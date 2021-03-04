@@ -1,8 +1,6 @@
 /*=============================================================================
- *  * All rights reserved.
+ * All rights reserved.
  * License: bsd-3-clause (see LICENSE.txt)
- * Date: 2020/10/14
- * Version: 1
  *===========================================================================*/
 
 /*=====[Inclusions of function dependencies]=================================*/
@@ -95,10 +93,9 @@ int main( void )
 	char *ptr;
 
 	//-- configuracion UART
-	//uartInit2( uartMap_t uart, uint32_t baudRate, uint8_t dataBits, uint8_t parity, uint8_t stopBits );
 	uartConfig( UART_USB, 115200 ); // Inicializar UART_USB a 115200 baudios
 	uartConfig( UART_232, 115200 ); // Inicializar UART_232 a 115200 baudios
-	//uartInit2( UART_232,115200, 24, 0,1);
+
 
 
 
@@ -188,8 +185,8 @@ int main( void )
 
 			if ((date[0] == ':') && (date[1] == 'D')){  //Repuesta de sonda seguido del valor de medicion
 
-				for(uint8_t i = 2; i < 4; i++) { //:D18  Coordenada C
-					auxX[i-2]= date[i];			 // 18  Coordenada C
+				for(uint8_t i = 19; i < 25; i++) { //:D18  Coordenada C
+					auxX[i-19]= date[i];			 // 18  Coordenada C
 					}
 
 				long int ret = strtol (auxX, &ptr, 10) ;  // De CHAR a INT atoi base 10
@@ -228,43 +225,6 @@ int main( void )
 		}
 	}
 
-
-/**-----------------------
-	while( true ) {
-      gpioToggle(LED);
-      delay(100);
-
-      // Crear Maquina de esto Me muestre menu y envie y presente datos
-      if( uartReadByte( UART_USB, &data ) ) {
-    	  uartWriteByte( UART_232, data );
-      }
-      if( uartReadByte( UART_232, &data ) ) {
-      uartWriteByte( UART_USB, data );
-      }
-      if (text[0] == 'a'){
-
-    	 for (uint8_t i = 1; text[i] != '\0'; i++) {
-    	 uartWriteByte( UART_USB, text[i] );
-    	 }
-    	 uartWriteByte(UART_USB, '\r');
-    	 uartWriteByte(UART_USB, '\n');
-      }
-
-      //enviarDato(dato);
-   }
-
-
-			if( uartReadByte( UART_USB, &data ) ) {
-			   uartWriteByte( UART_232, data );
-			   state = standByState;
-			}
-			if( uartReadByte( UART_232, &data ) ) {
-			   uartWriteByte( UART_USB, data );
-			   state = standByState;
-			}
-
-			//state = busyState;
-------------------------------------------**/
    // YOU NEVER REACH HERE, because this program runs directly or on a
    // microcontroller and is not called by any Operating System, as in the 
    // case of a PC program.

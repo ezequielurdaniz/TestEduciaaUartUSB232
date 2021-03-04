@@ -1,5 +1,4 @@
 /*=============================================================================
- * Copyright (c) 2020, Eric Pernia <ericpernia@gmail.com>
  * All rights reserved.
  * License: bsd-3-clause (see LICENSE.txt)
  * Date: 2020/10/14

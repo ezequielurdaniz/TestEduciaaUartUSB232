@@ -806,11 +806,11 @@ int main( void )
 1a000370:	2500      	movs	r5, #0
 1a000372:	4b96      	ldr	r3, [pc, #600]	; (1a0005cc <main+0x264>)
 1a000374:	701d      	strb	r5, [r3, #0]
+	uint8_t cuenta = 0; //Cantidad de datos
 	int32_t list[4];
 	char *ptr;
 
 	//-- configuracion UART
-	//uartInit2( uartMap_t uart, uint32_t baudRate, uint8_t dataBits, uint8_t parity, uint8_t stopBits );
 	uartConfig( UART_USB, 115200 ); // Inicializar UART_USB a 115200 baudios
 1a000376:	f44f 31e1 	mov.w	r1, #115200	; 0x1c200
 1a00037a:	2003      	movs	r0, #3
@@ -853,7 +853,7 @@ int main( void )
 1a0003ba:	4b84      	ldr	r3, [pc, #528]	; (1a0005cc <main+0x264>)
 1a0003bc:	781b      	ldrb	r3, [r3, #0]
 1a0003be:	2b05      	cmp	r3, #5
-1a0003c0:	f200 80ff 	bhi.w	1a0005c2 <main+0x25a>
+1a0003c0:	f200 8100 	bhi.w	1a0005c4 <main+0x25c>
 1a0003c4:	a201      	add	r2, pc, #4	; (adr r2, 1a0003cc <main+0x64>)
 1a0003c6:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
 1a0003ca:	bf00      	nop
@@ -1087,7 +1087,7 @@ int main( void )
 				for (uint8_t i = 0; i<5; i++){
 1a00052c:	4603      	mov	r3, r0
 1a00052e:	2b04      	cmp	r3, #4
-1a000530:	d82f      	bhi.n	1a000592 <main+0x22a>
+1a000530:	d830      	bhi.n	1a000594 <main+0x22c>
 					aux = list[i] + aux;
 1a000532:	aa20      	add	r2, sp, #128	; 0x80
 1a000534:	eb02 0283 	add.w	r2, r2, r3, lsl #2
@@ -1101,81 +1101,80 @@ int main( void )
 1a000544:	f89d 3019 	ldrb.w	r3, [sp, #25]
 1a000548:	2b44      	cmp	r3, #68	; 0x44
 1a00054a:	d1e9      	bne.n	1a000520 <main+0x1b8>
-				for(uint8_t i = 2; i < 4; i++) { //:D18  Coordenada C
-1a00054c:	2302      	movs	r3, #2
-1a00054e:	e00a      	b.n	1a000566 <main+0x1fe>
-					auxX[i-2]= date[i];			 // 18  Coordenada C
-1a000550:	1e9a      	subs	r2, r3, #2
-1a000552:	a920      	add	r1, sp, #128	; 0x80
-1a000554:	4419      	add	r1, r3
-1a000556:	f811 1c68 	ldrb.w	r1, [r1, #-104]
-1a00055a:	a820      	add	r0, sp, #128	; 0x80
-1a00055c:	4402      	add	r2, r0
-1a00055e:	f802 1c6c 	strb.w	r1, [r2, #-108]
-				for(uint8_t i = 2; i < 4; i++) { //:D18  Coordenada C
-1a000562:	3301      	adds	r3, #1
-1a000564:	b2db      	uxtb	r3, r3
-1a000566:	2b03      	cmp	r3, #3
-1a000568:	d9f2      	bls.n	1a000550 <main+0x1e8>
+				for(uint8_t i = 19; i < 25; i++) { //:D18  Coordenada C
+1a00054c:	2313      	movs	r3, #19
+1a00054e:	e00b      	b.n	1a000568 <main+0x200>
+					auxX[i-19]= date[i];			 // 18  Coordenada C
+1a000550:	f1a3 0213 	sub.w	r2, r3, #19
+1a000554:	a920      	add	r1, sp, #128	; 0x80
+1a000556:	4419      	add	r1, r3
+1a000558:	f811 1c68 	ldrb.w	r1, [r1, #-104]
+1a00055c:	a820      	add	r0, sp, #128	; 0x80
+1a00055e:	4402      	add	r2, r0
+1a000560:	f802 1c6c 	strb.w	r1, [r2, #-108]
+				for(uint8_t i = 19; i < 25; i++) { //:D18  Coordenada C
+1a000564:	3301      	adds	r3, #1
+1a000566:	b2db      	uxtb	r3, r3
+1a000568:	2b18      	cmp	r3, #24
+1a00056a:	d9f1      	bls.n	1a000550 <main+0x1e8>
 				long int ret = strtol (auxX, &ptr, 10) ;  // De CHAR a INT atoi base 10
-1a00056a:	220a      	movs	r2, #10
-1a00056c:	4669      	mov	r1, sp
-1a00056e:	a805      	add	r0, sp, #20
-1a000570:	f001 fd0a 	bl	1a001f88 <strtol>
+1a00056c:	220a      	movs	r2, #10
+1a00056e:	4669      	mov	r1, sp
+1a000570:	a805      	add	r0, sp, #20
+1a000572:	f001 fd09 	bl	1a001f88 <strtol>
 				list[cuenta] = ret;
-1a000574:	ab20      	add	r3, sp, #128	; 0x80
-1a000576:	eb03 0385 	add.w	r3, r3, r5, lsl #2
-1a00057a:	f843 0c7c 	str.w	r0, [r3, #-124]
+1a000576:	ab20      	add	r3, sp, #128	; 0x80
+1a000578:	eb03 0385 	add.w	r3, r3, r5, lsl #2
+1a00057c:	f843 0c7c 	str.w	r0, [r3, #-124]
 				cuenta++;
-1a00057e:	3501      	adds	r5, #1
-1a000580:	b2ed      	uxtb	r5, r5
+1a000580:	3501      	adds	r5, #1
+1a000582:	b2ed      	uxtb	r5, r5
 				uartTxWrite(UART_USB, ret);
-1a000582:	b2c1      	uxtb	r1, r0
-1a000584:	2003      	movs	r0, #3
-1a000586:	f000 ffcb 	bl	1a001520 <uartTxWrite>
+1a000584:	b2c1      	uxtb	r1, r0
+1a000586:	2003      	movs	r0, #3
+1a000588:	f000 ffca 	bl	1a001520 <uartTxWrite>
 				state = finishState;
-1a00058a:	4b10      	ldr	r3, [pc, #64]	; (1a0005cc <main+0x264>)
-1a00058c:	2204      	movs	r2, #4
-1a00058e:	701a      	strb	r2, [r3, #0]
-1a000590:	e7c6      	b.n	1a000520 <main+0x1b8>
+1a00058c:	4b0f      	ldr	r3, [pc, #60]	; (1a0005cc <main+0x264>)
+1a00058e:	2204      	movs	r2, #4
+1a000590:	701a      	strb	r2, [r3, #0]
+1a000592:	e7c5      	b.n	1a000520 <main+0x1b8>
 					}
 
 				itoa( aux, auxX, 10 );			// De INT a CHAR  itoa base 10  (aux y list son int32_t)
-1a000592:	220a      	movs	r2, #10
-1a000594:	a905      	add	r1, sp, #20
-1a000596:	f7ff feb3 	bl	1a000300 <itoa>
+1a000594:	220a      	movs	r2, #10
+1a000596:	a905      	add	r1, sp, #20
+1a000598:	f7ff feb2 	bl	1a000300 <itoa>
 
 				uartTxWrite(UART_USB, auxX[0]);
-1a00059a:	f89d 1014 	ldrb.w	r1, [sp, #20]
-1a00059e:	2003      	movs	r0, #3
-1a0005a0:	f000 ffbe 	bl	1a001520 <uartTxWrite>
+1a00059c:	f89d 1014 	ldrb.w	r1, [sp, #20]
+1a0005a0:	2003      	movs	r0, #3
+1a0005a2:	f000 ffbd 	bl	1a001520 <uartTxWrite>
 				uartTxWrite(UART_USB, auxX[1]);
-1a0005a4:	f89d 1015 	ldrb.w	r1, [sp, #21]
-1a0005a8:	2003      	movs	r0, #3
-1a0005aa:	f000 ffb9 	bl	1a001520 <uartTxWrite>
+1a0005a6:	f89d 1015 	ldrb.w	r1, [sp, #21]
+1a0005aa:	2003      	movs	r0, #3
+1a0005ac:	f000 ffb8 	bl	1a001520 <uartTxWrite>
 				uartTxWrite(UART_USB, '\r');
-1a0005ae:	210d      	movs	r1, #13
-1a0005b0:	2003      	movs	r0, #3
-1a0005b2:	f000 ffb5 	bl	1a001520 <uartTxWrite>
+1a0005b0:	210d      	movs	r1, #13
+1a0005b2:	2003      	movs	r0, #3
+1a0005b4:	f000 ffb4 	bl	1a001520 <uartTxWrite>
 				uartTxWrite(UART_USB, '\n');
-1a0005b6:	210a      	movs	r1, #10
-1a0005b8:	2003      	movs	r0, #3
-1a0005ba:	f000 ffb1 	bl	1a001520 <uartTxWrite>
+1a0005b8:	210a      	movs	r1, #10
+1a0005ba:	2003      	movs	r0, #3
+1a0005bc:	f000 ffb0 	bl	1a001520 <uartTxWrite>
 				cuenta = 0;
-1a0005be:	2500      	movs	r5, #0
-1a0005c0:	e6fb      	b.n	1a0003ba <main+0x52>
+1a0005c0:	2500      	movs	r5, #0
+1a0005c2:	e6fa      	b.n	1a0003ba <main+0x52>
 		case errorState:
 
 			break;
 
 		default:
 			state = standByState;
-1a0005c2:	4b02      	ldr	r3, [pc, #8]	; (1a0005cc <main+0x264>)
-1a0005c4:	2200      	movs	r2, #0
-1a0005c6:	701a      	strb	r2, [r3, #0]
+1a0005c4:	4b01      	ldr	r3, [pc, #4]	; (1a0005cc <main+0x264>)
+1a0005c6:	2200      	movs	r2, #0
+1a0005c8:	701a      	strb	r2, [r3, #0]
 			break;
-1a0005c8:	e6f7      	b.n	1a0003ba <main+0x52>
-1a0005ca:	bf00      	nop
+1a0005ca:	e6f6      	b.n	1a0003ba <main+0x52>
 1a0005cc:	10000241 	.word	0x10000241
 1a0005d0:	1a003808 	.word	0x1a003808
 1a0005d4:	1a003818 	.word	0x1a003818
