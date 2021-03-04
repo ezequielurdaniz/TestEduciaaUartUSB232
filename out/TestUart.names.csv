@@ -1,0 +1,282 @@
+_programs/TestUart/out/TestUart.elf:10000218 00000004 b heap_end.5778
+_programs/TestUart/out/TestUart.elf:1a00074c 00000044 t Board_LED_Init
+_programs/TestUart/out/TestUart.elf:1a000790 00000040 t Board_TEC_Init
+_programs/TestUart/out/TestUart.elf:1a0007d0 00000040 t Board_GPIO_Init
+_programs/TestUart/out/TestUart.elf:1a000810 00000030 t Board_ADC_Init
+_programs/TestUart/out/TestUart.elf:1a000840 00000038 t Board_SPI_Init
+_programs/TestUart/out/TestUart.elf:1a000878 00000024 t Board_I2C_Init
+_programs/TestUart/out/TestUart.elf:1a0038a8 00000008 t GpioButtons
+_programs/TestUart/out/TestUart.elf:1a0038b0 0000000c t GpioLeds
+_programs/TestUart/out/TestUart.elf:1a0038bc 00000012 t GpioPorts
+_programs/TestUart/out/TestUart.elf:1a0038d4 00000004 t InitClkStates
+_programs/TestUart/out/TestUart.elf:1a0038d8 00000074 t pinmuxing
+_programs/TestUart/out/TestUart.elf:10000000 00000038 d i2c
+_programs/TestUart/out/TestUart.elf:1a000a68 0000002c t Chip_UART_GetIndex
+_programs/TestUart/out/TestUart.elf:1a00394c 00000008 t UART_BClock
+_programs/TestUart/out/TestUart.elf:1a003954 00000008 t UART_PClock
+_programs/TestUart/out/TestUart.elf:1a000c10 00000014 t Chip_ADC_GetClockIndex
+_programs/TestUart/out/TestUart.elf:1a000c24 00000032 t getClkDiv
+_programs/TestUart/out/TestUart.elf:1a000cd8 000000a4 t pll_calc_divs
+_programs/TestUart/out/TestUart.elf:1a000d7c 0000010c t pll_get_frac
+_programs/TestUart/out/TestUart.elf:1a000e88 0000004c t Chip_Clock_FindBaseClock
+_programs/TestUart/out/TestUart.elf:1a0010fc 00000022 t Chip_Clock_GetDivRate
+_programs/TestUart/out/TestUart.elf:1000021c 00000008 b audio_usb_pll_freq
+_programs/TestUart/out/TestUart.elf:1a003968 0000006c t periph_to_base
+_programs/TestUart/out/TestUart.elf:1a0039d4 00000048 t InitClkStates
+_programs/TestUart/out/TestUart.elf:1a0013d4 00000014 t Chip_SSP_GetClockIndex
+_programs/TestUart/out/TestUart.elf:1a0013e8 00000018 t Chip_SSP_GetPeriphClockIndex
+_programs/TestUart/out/TestUart.elf:10000038 00000004 d ClockSpeed
+_programs/TestUart/out/TestUart.elf:1a003a1c 00000048 t lpcUarts
+_programs/TestUart/out/TestUart.elf:10000224 00000004 b callBackFuncParams
+_programs/TestUart/out/TestUart.elf:10000228 00000008 b tickCounter
+_programs/TestUart/out/TestUart.elf:10000230 00000004 b tickHookFunction
+_programs/TestUart/out/TestUart.elf:1a001684 00000034 t gpioObtainPinInit
+_programs/TestUart/out/TestUart.elf:10000234 00000004 b g_hUsb
+_programs/TestUart/out/TestUart.elf:1a001e6c 000000f6 t _strtol_l.isra.0
+_programs/TestUart/out/TestUart.elf:1a0022b8 00000048 t std
+_programs/TestUart/out/TestUart.elf:1a0026e4 0000002e t __sfputc_r
+_programs/TestUart/out/TestUart.elf:1a003214 00000012 t lflush
+_programs/TestUart/out/TestUart.elf:1a00342a 000000f4 t _strtoul_l.isra.0
+_programs/TestUart/out/TestUart.elf:1000004c 00000060 d impure_data
+_programs/TestUart/out/TestUart.elf:1a003d1c t __init_array_end
+_programs/TestUart/out/TestUart.elf:1a003d18 b __preinit_array_end
+_programs/TestUart/out/TestUart.elf:1a003d18 t __init_array_start
+_programs/TestUart/out/TestUart.elf:1a003d18 b __preinit_array_start
+_programs/TestUart/out/TestUart.elf:1a0037b0 00000010 T _malloc_usable_size_r
+_programs/TestUart/out/TestUart.elf:1a002f64 000000c6 T _scanf_chars
+_programs/TestUart/out/TestUart.elf:1a000f20 0000001c T Chip_Clock_GetDividerSource
+_programs/TestUart/out/TestUart.elf:1a000698 00000012 T _isatty_r
+_programs/TestUart/out/TestUart.elf:1a001d74 000000b8 T _puts_r
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W TIMER2_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a00150c 00000014 T uartRxRead
+_programs/TestUart/out/TestUart.elf:1a0006aa 0000000a T _lseek_r
+_programs/TestUart/out/TestUart.elf:1a000184 00000002 W DebugMon_Handler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W RIT_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a080000 A __top_MFlashA512
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W ADCHS_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a000114 T __section_table_start
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W FLASH_EEPROM_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W I2C0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a001d44 00000030 T printf
+_programs/TestUart/out/TestUart.elf:1a000932 00000008 T __stdio_init
+_programs/TestUart/out/TestUart.elf:1a0033fe 00000024 T __sseek
+_programs/TestUart/out/TestUart.elf:1a002338 00000060 T __sinit
+_programs/TestUart/out/TestUart.elf:1a001fb4 000000a4 T __swbuf_r
+_programs/TestUart/out/TestUart.elf:1a00017a 00000002 W HardFault_Handler
+_programs/TestUart/out/TestUart.elf:1a00230c 0000002c T __sfmoreglue
+_programs/TestUart/out/TestUart.elf:1a000000 A __vectors_start__
+_programs/TestUart/out/TestUart.elf:1a000cca 0000000c T Chip_ADC_SetResolution
+_programs/TestUart/out/TestUart.elf:1a003762 00000002 T __malloc_unlock
+_programs/TestUart/out/TestUart.elf:1a001650 00000034 T SysTick_Handler
+_programs/TestUart/out/TestUart.elf:1a000ae8 00000040 T Chip_UART_SetBaud
+_programs/TestUart/out/TestUart.elf:1a0005f4 00000002 W initialise_monitor_handles
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W SDIO_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0008d4 0000001c T Board_UARTGetChar
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W ATIMER_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a000186 00000002 W PendSV_Handler
+_programs/TestUart/out/TestUart.elf:1a00248c 0000001c T __locale_ctype_ptr
+_programs/TestUart/out/TestUart.elf:1a000178 00000002 W NMI_Handler
+_programs/TestUart/out/TestUart.elf:1a003d24 R __exidx_end
+_programs/TestUart/out/TestUart.elf:1a000150 T __data_section_table_end
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W I2C1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W UART1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO5_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W CAN1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a00068e 0000000a T _fstat_r
+_programs/TestUart/out/TestUart.elf:53ff7296 A __valid_user_code_checksum
+_programs/TestUart/out/TestUart.elf:1a00302c 000001e8 T _scanf_i
+_programs/TestUart/out/TestUart.elf:1a003d24 R _etext
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W USB1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W I2S0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002f14 00000050 T _vfiscanf_r
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W TIMER3_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a00119e 0000000c T Chip_Clock_GetBaseClocktHz
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W UART0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001a8 00000012 T bss_init
+_programs/TestUart/out/TestUart.elf:1a001d1c 00000016 T memcpy
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W SGPIO_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002300 0000000c T _cleanup_r
+_programs/TestUart/out/TestUart.elf:1a0019d4 T __aeabi_uldivmod
+_programs/TestUart/out/TestUart.elf:1000024c ? _noinit
+_programs/TestUart/out/TestUart.elf:1a001e2c 00000010 T puts
+_programs/TestUart/out/TestUart.elf:10000244 00000004 B SystemCoreClock
+_programs/TestUart/out/TestUart.elf:1a002f14 00000050 T _vfscanf_r
+_programs/TestUart/out/TestUart.elf:1a001e3c 00000030 T iscanf
+_programs/TestUart/out/TestUart.elf:1a000a94 00000054 T Chip_UART_Init
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W ADC0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a000180 00000002 W UsageFault_Handler
+_programs/TestUart/out/TestUart.elf:1a00121c 0000004c T Chip_Clock_GetRate
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO6_IRQHandler
+_programs/TestUart/out/TestUart.elf:10000240 00000001 B flag
+_programs/TestUart/out/TestUart.elf:1a000974 0000006c T Board_SetupClocking
+_programs/TestUart/out/TestUart.elf:20008000 A __top_RamAHB32
+_programs/TestUart/out/TestUart.elf:1a000300 00000068 T itoa
+_programs/TestUart/out/TestUart.elf:1a001a04 000002cc T __udivmoddi4
+_programs/TestUart/out/TestUart.elf:1a00072c 00000020 T _sbrk_r
+_programs/TestUart/out/TestUart.elf:1a0038a4 00000004 T ExtRateIn
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W IntDefaultHandler
+_programs/TestUart/out/TestUart.elf:1a000300 T __CRP_WORD_END__
+_programs/TestUart/out/TestUart.elf:1a0006b4 0000004e T _read_r
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002294 00000024 T fflush
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W SSP0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0014dc 00000018 T uartRxReady
+_programs/TestUart/out/TestUart.elf:1a003d1c R __exidx_start
+_programs/TestUart/out/TestUart.elf:1a0002fc 00000004 T CRP_WORD
+_programs/TestUart/out/TestUart.elf:1a003bac 00000004 T _global_impure_ptr
+_programs/TestUart/out/TestUart.elf:1a003764 0000004c T _realloc_r
+_programs/TestUart/out/TestUart.elf:1a001cd4 00000048 T __libc_init_array
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W ADC1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0008f0 00000030 T Board_Init
+_programs/TestUart/out/TestUart.elf:1a000682 00000002 W _init
+_programs/TestUart/out/TestUart.elf:10000241 00000001 B state
+_programs/TestUart/out/TestUart.elf:1a000114 T __data_section_table
+_programs/TestUart/out/TestUart.elf:1a001f88 0000002c T strtol
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W RTC_IRQHandler
+_programs/TestUart/out/TestUart.elf:1000024c B _ebss
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W TIMER0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0005f8 00000088 T Reset_Handler
+_programs/TestUart/out/TestUart.elf:1a0015d4 0000007c T tickInit
+_programs/TestUart/out/TestUart.elf:20010000 A __top_RamAHB_ETB16
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W SPI_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a000a30 00000038 T Chip_I2C_SetClockRate
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W LCD_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a000ed4 0000004c T Chip_Clock_EnableCrystal
+_programs/TestUart/out/TestUart.elf:10008000 A __top_RamLoc32
+_programs/TestUart/out/TestUart.elf:1a00018a 0000001e T data_init
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W TIMER1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a003b4c 00000020 T __sf_fake_stderr
+_programs/TestUart/out/TestUart.elf:1a000a0c 00000024 T Chip_I2C_Init
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W UART2_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a001090 0000006c T Chip_Clock_GetMainPLLHz
+_programs/TestUart/out/TestUart.elf:1a003a64 000000e6 T gpioPinsInit
+_programs/TestUart/out/TestUart.elf:1a001400 00000012 T Chip_SSP_SetClockRate
+_programs/TestUart/out/TestUart.elf:1a0018f6 00000016 T gpioToggle
+_programs/TestUart/out/TestUart.elf:1a002712 00000024 T __sfputs_r
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO2_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0036c0 T memchr
+_programs/TestUart/out/TestUart.elf:1a002594 0000009c T _free_r
+_programs/TestUart/out/TestUart.elf:1a001178 00000026 T Chip_Clock_GetBaseClock
+_programs/TestUart/out/TestUart.elf:10000218 B _bss
+_programs/TestUart/out/TestUart.elf:10000242 00000001 B dato
+_programs/TestUart/out/TestUart.elf:1a000c98 00000032 T Chip_ADC_SetSampleRate
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W I2S1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a001412 0000003e T Chip_SSP_SetBitRate
+_programs/TestUart/out/TestUart.elf:10000243 00000001 B flagdat
+_programs/TestUart/out/TestUart.elf:1a0013d0 00000002 T Chip_GPIO_Init
+_programs/TestUart/out/TestUart.elf:1a0038d0 00000004 T OscRateIn
+_programs/TestUart/out/TestUart.elf:1a001534 0000007c T uartInit
+_programs/TestUart/out/TestUart.elf:1000024c ? _end_noinit
+_programs/TestUart/out/TestUart.elf:10008000 A _vStackTop
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W SSP1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a003520 00000024 T _strtoul_r
+_programs/TestUart/out/TestUart.elf:1a000178 T __bss_section_table_end
+_programs/TestUart/out/TestUart.elf:1a000684 0000000a T _close_r
+_programs/TestUart/out/TestUart.elf:1a0016b8 00000194 T gpioInit
+_programs/TestUart/out/TestUart.elf:1a002058 000000dc T __swsetup_r
+_programs/TestUart/out/TestUart.elf:1a001cd0 00000002 W __aeabi_ldiv0
+_programs/TestUart/out/TestUart.elf:1a002398 00000078 T __sfp
+_programs/TestUart/out/TestUart.elf:1a0033a4 00000022 T __sread
+_programs/TestUart/out/TestUart.elf:1a00190c 0000001c T USB0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO3_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a003760 00000002 T __malloc_lock
+_programs/TestUart/out/TestUart.elf:1a0008c0 00000014 T Board_UARTPutChar
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W SCT_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002240 00000054 T _fflush_r
+_programs/TestUart/out/TestUart.elf:1a003b6c 00000020 T __sf_fake_stdin
+_programs/TestUart/out/TestUart.elf:1a000f3c 0000001c T Chip_Clock_GetDividerDivisor
+_programs/TestUart/out/TestUart.elf:1a0002fc T __CRP_WORD_START__
+_programs/TestUart/out/TestUart.elf:1a001d32 00000010 T memset
+_programs/TestUart/out/TestUart.elf:1a00017c 00000002 W MemManage_Handler
+_programs/TestUart/out/TestUart.elf:1a000368 0000028c T main
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W WDT_IRQHandler
+_programs/TestUart/out/TestUart.elf:2000c000 A __top_RamAHB16
+_programs/TestUart/out/TestUart.elf:1008a000 A __top_RamLoc40
+_programs/TestUart/out/TestUart.elf:1a000182 00000002 W SVC_Handler
+_programs/TestUart/out/TestUart.elf:1a003422 00000008 T __sclose
+_programs/TestUart/out/TestUart.elf:1a001f64 00000024 T _strtol_r
+_programs/TestUart/out/TestUart.elf:1a002630 000000b4 T _malloc_r
+_programs/TestUart/out/TestUart.elf:1a00369c 0000001a T __ascii_wctomb
+_programs/TestUart/out/TestUart.elf:1a0014f4 00000018 T uartTxReady
+_programs/TestUart/out/TestUart.elf:1a003544 00000074 T __submore
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO7_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0011ac 0000003c T Chip_Clock_EnableOpts
+_programs/TestUart/out/TestUart.elf:1a00092a 00000008 T __stdio_getchar
+_programs/TestUart/out/TestUart.elf:1a002410 00000038 T _fwalk
+_programs/TestUart/out/TestUart.elf:1a000f58 000000b8 T Chip_Clock_GetClockInputHz
+_programs/TestUart/out/TestUart.elf:1a001010 00000080 T Chip_Clock_CalcMainPLLValue
+_programs/TestUart/out/TestUart.elf:1a001488 00000038 T SystemInit
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W SPIFI_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a00199c 00000038 T delay
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W QEI_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a000150 T __bss_section_table
+_programs/TestUart/out/TestUart.elf:1a00184c 00000056 T gpioWrite
+_programs/TestUart/out/TestUart.elf:1a000680 00000002 W _fini
+_programs/TestUart/out/TestUart.elf:1a001d44 00000030 T iprintf
+_programs/TestUart/out/TestUart.elf:1a002c74 000002a0 T __svfiscanf_r
+_programs/TestUart/out/TestUart.elf:1a000c58 00000040 T Chip_ADC_Init
+_programs/TestUart/out/TestUart.elf:10000248 00000004 B g_pUsbApi
+_programs/TestUart/out/TestUart.elf:1a00093c 00000038 T Board_SetupMuxing
+_programs/TestUart/out/TestUart.elf:1a000b28 000000e8 T Chip_UART_SetBaudFDR
+_programs/TestUart/out/TestUart.elf:1a0015b0 0000000c T tickRead
+_programs/TestUart/out/TestUart.elf:1a000702 00000028 T _write_r
+_programs/TestUart/out/TestUart.elf:10000040 00000008 D tickRateMS
+_programs/TestUart/out/TestUart.elf:1a001e3c 00000030 T scanf
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W ETH_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002964 000000ea T _printf_common
+_programs/TestUart/out/TestUart.elf:10000048 00000004 D _impure_ptr
+_programs/TestUart/out/TestUart.elf:1a002134 0000010c T __sflush_r
+_programs/TestUart/out/TestUart.elf:10000000 ? _end_uninit_RESERVED
+_programs/TestUart/out/TestUart.elf:1a001520 00000014 T uartTxWrite
+_programs/TestUart/out/TestUart.elf:1a003228 00000118 T __srefill_r
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W CAN0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002570 00000024 T __ascii_mbtowc
+_programs/TestUart/out/TestUart.elf:10000000 D _data
+_programs/TestUart/out/TestUart.elf:1000024c B _pvHeapStart
+_programs/TestUart/out/TestUart.elf:1a000178 T __section_table_end
+_programs/TestUart/out/TestUart.elf:1a001450 00000038 T Chip_SSP_Init
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GINT0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0024a8 00000048 T __swhatbuf_r
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W DAC_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a00089c 00000024 T Board_Debug_Init
+_programs/TestUart/out/TestUart.elf:1a000920 0000000a T __stdio_putchar
+_programs/TestUart/out/TestUart.elf:10000218 D _edata
+_programs/TestUart/out/TestUart.elf:1a0009ec 00000020 T Chip_I2C_EventHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W M0SUB_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a00127c 00000154 T Chip_SetupCoreClock
+_programs/TestUart/out/TestUart.elf:1a0033c6 00000038 T __swrite
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO0_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002738 0000022c T _vfiprintf_r
+_programs/TestUart/out/TestUart.elf:1a000000 00000040 T g_pfnVectors
+_programs/TestUart/out/TestUart.elf:1a002448 0000003c T _fwalk_reent
+_programs/TestUart/out/TestUart.elf:1a001268 00000014 T SystemCoreClockUpdate
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W DMA_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W EVRT_IRQHandler
+_programs/TestUart/out/TestUart.elf:1b080000 A __top_MFlashB512
+_programs/TestUart/out/TestUart.elf:1a003b8c 00000020 T __sf_fake_stdout
+_programs/TestUart/out/TestUart.elf:1a003340 00000064 T __sccl
+_programs/TestUart/out/TestUart.elf:1a003c17 00000101 T _ctype_
+_programs/TestUart/out/TestUart.elf:1a001cd0 00000002 W __aeabi_idiv0
+_programs/TestUart/out/TestUart.elf:1a00017e 00000002 W BusFault_Handler
+_programs/TestUart/out/TestUart.elf:1a0024f0 00000080 T __smakebuf_r
+_programs/TestUart/out/TestUart.elf:1a002a50 00000224 T _printf_i
+_programs/TestUart/out/TestUart.elf:1a002484 00000006 T __locale_ctype_ptr_l
+_programs/TestUart/out/TestUart.elf:1a0011e8 00000034 T Chip_Clock_Enable
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W UART3_IRQHandler
+_programs/TestUart/out/TestUart.elf:1000023c 00000004 B __malloc_sbrk_start
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W MCPWM_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W M0APP_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0018a2 00000054 T gpioRead
+_programs/TestUart/out/TestUart.elf:1a001928 00000074 T boardInit
+_programs/TestUart/out/TestUart.elf:10000238 00000004 B __malloc_free_list
+_programs/TestUart/out/TestUart.elf:1a000040 000000d4 T g_pfnVendorVectors
+_programs/TestUart/out/TestUart.elf:1a002738 0000022c T _vfprintf_r
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GINT1_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a002c74 000002a0 T __svfscanf_r
+_programs/TestUart/out/TestUart.elf:1a0035b8 000000e4 T _ungetc_r
+_programs/TestUart/out/TestUart.elf:1a0015bc 00000018 T tickPowerSet
+_programs/TestUart/out/TestUart.elf:100000ac 0000016c D __global_locale
+_programs/TestUart/out/TestUart.elf:1a001120 00000058 T Chip_Clock_SetBaseClock
+_programs/TestUart/out/TestUart.elf:1a0014c0 0000001c T cyclesCounterInit
+_programs/TestUart/out/TestUart.elf:1a0001ba 00000002 W GPIO4_IRQHandler
+_programs/TestUart/out/TestUart.elf:1a0009e0 0000000c T Board_SystemInit
