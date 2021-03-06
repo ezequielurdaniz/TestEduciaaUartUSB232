@@ -19,19 +19,16 @@ void uartInit_c(void){
 
 	}
 
-void enviarDato(uint8_t dato){
-	// Envia el dato a la UART_USB
-	uartWriteByte( UART_USB, dato );
+void EnviarDatoUart (uartMap_t uart,uint8_t dato){
+
+	 uartWriteByte(uart,dato);
+
 	}
 
-int RecibirDato(uint8_t dato){
-	// Recibe un byte de la UART_USB guardo dato.
-	if(uartReadByte( UART_USB, &dato )){
-		flagdat=ON;
-	}
-	else{
-		flagdat=OFF;
-	}
-	return flagdat;
-	}
+int RecivirDatoUart (uartMap_t uart,uint8_t dato){
 
+	 uartReadByte( UART_USB, &dato );
+
+
+	return dato;
+}

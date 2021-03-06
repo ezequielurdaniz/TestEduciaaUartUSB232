@@ -81,7 +81,7 @@ int main( void )
 
 	uint8_t data = 0;
 	uint8_t flag = 0;
-	char text[50]; //Menu principal
+	char text[1]; //Menu principal
 	char date[50]; //transferencia de Datos
 	char auxX[1];
 	char auxY[5];
@@ -119,16 +119,27 @@ int main( void )
 
 			if (text[0] == '1'){
 				text[0]= '0'; 		//clear text
-				state = busyState;
-				printf("ENCENDER SONDA... \r\n");
 
-				if (uartTxReady(UART_232)){  		//Hay espacio para escribir
-					uartTxWrite(UART_232, 'o');         //Comando o -> Sonda ON
-					uartTxWrite(UART_232, '\r');
-					uartTxWrite(UART_232, '\n');
-					}
+				printf("ENCENDER SONDA... \r\n");
+				uartTxWrite(UART_232, 'o');
+				uartTxWrite(UART_232, '\r');
+				uartTxWrite(UART_232, '\n');
+				state = busyState;
 				break;
 				}
+
+			if (text[0] == '2'){
+				text[0]= '0'; 		//clear text
+				state = standByState;
+				break;
+			}
+
+			if (text[0] == '3'){
+				text[0]= '0'; 		//clear text
+				state = standByState;
+				break;
+			}
+
 			state = standByState;
 			text[0]= '0'; //clear text
 			break;
@@ -227,6 +238,12 @@ int main( void )
 
    // YOU NEVER REACH HERE, because this program runs directly or on a
    // microcontroller and is not called by any Operating System, as in the 
+
+  //  if(  uartReadByte( UART_USB, &dato ) ){
+
+       // Se reenvia el dato a la UART_USB realizando un eco de lo que llega
+    //   uartWriteByte( UART_USB, dato );
+    //}
    // case of a PC program.
    return 0;
 }

@@ -15,8 +15,9 @@
 
 /*==================[(Proptotipo) functions definition]==========================*/
 void uartInit_c(void);
-void enviarDato(uint8_t dato);
-int RecibirDato(uint8_t dato);
+
+void EnviarDatoUart (uartMap_t uart,uint8_t dato);
+int RecivirDatoUart (uartMap_t uart,uint8_t dato);
 
 /*==================[external data definition]===============================*/
 
