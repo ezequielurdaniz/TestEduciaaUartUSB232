@@ -14,15 +14,12 @@
 #include <stddef.h>
 
 /*==================[(Proptotipo) functions definition]==========================*/
-void uartInit_c(void);
 
-void EnviarDatoUart (uartMap_t uart,uint8_t dato);
-int RecivirDatoUart (uartMap_t uart,uint8_t dato);
+
+
 
 /*==================[external data definition]===============================*/
 
-uint8_t dato  ; //= 0;
-uint8_t flagdat; // flagdat ON//OFF
 
 
 

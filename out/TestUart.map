@@ -100,10 +100,6 @@ dht11_timeout       0x4               _programs/TestUart/out/libs/sapi/sapi_v0.5
 dht11_timeout_max   0x4               _programs/TestUart/out/libs/sapi/sapi_v0.5.2/external_peripherals/src/sapi_dht11.o
 CR                  0x408             _programs/TestUart/out/libs/plc//src/PLC_Registers.o
 SystemCoreClock     0x4               _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
-flag                0x1               _programs/TestUart/out/_programs/TestUart/src/TestUart.o
-state               0x1               _programs/TestUart/out/_programs/TestUart/src/TestUart.o
-dato                0x1               _programs/TestUart/out/_programs/TestUart/src/TestUart.o
-flagdat             0x1               _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 g_pUsbApi           0x4               _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
 schedulerTasks      0xc8              _programs/TestUart/out/libs/seos_pont_2014//src/seos_pont_2014_scheduler.o
 
@@ -230,7 +226,11 @@ Discarded input sections
  .text          0x0000000000000000        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
  .data          0x0000000000000000        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
  .bss           0x0000000000000000        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .text.clearbuffer
+                0x0000000000000000       0x38 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
  .text.itoa     0x0000000000000000       0x68 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .rodata.clearbuffer.str1.4
+                0x0000000000000000       0x18 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
  .rodata.itoa.str1.4
                 0x0000000000000000       0x48 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
  .group         0x0000000000000000        0xc _programs/TestUart/out/_programs/TestUart/src/uart.o
@@ -351,18 +351,10 @@ Discarded input sections
  .text          0x0000000000000000        0x0 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .data          0x0000000000000000        0x0 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .bss           0x0000000000000000        0x0 _programs/TestUart/out/_programs/TestUart/src/uart.o
- .text.uartInit_c
-                0x0000000000000000       0x18 _programs/TestUart/out/_programs/TestUart/src/uart.o
- .text.EnviarDatoUart
-                0x0000000000000000        0x8 _programs/TestUart/out/_programs/TestUart/src/uart.o
- .text.RecivirDatoUart
-                0x0000000000000000       0x1c _programs/TestUart/out/_programs/TestUart/src/uart.o
- .debug_info    0x0000000000000000     0x245a _programs/TestUart/out/_programs/TestUart/src/uart.o
- .debug_abbrev  0x0000000000000000      0x2c2 _programs/TestUart/out/_programs/TestUart/src/uart.o
- .debug_loc     0x0000000000000000       0x82 _programs/TestUart/out/_programs/TestUart/src/uart.o
+ .debug_info    0x0000000000000000     0x1e59 _programs/TestUart/out/_programs/TestUart/src/uart.o
+ .debug_abbrev  0x0000000000000000      0x20c _programs/TestUart/out/_programs/TestUart/src/uart.o
  .debug_aranges
-                0x0000000000000000       0x30 _programs/TestUart/out/_programs/TestUart/src/uart.o
- .debug_ranges  0x0000000000000000       0x20 _programs/TestUart/out/_programs/TestUart/src/uart.o
+                0x0000000000000000       0x18 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .debug_macro   0x0000000000000000      0x69f _programs/TestUart/out/_programs/TestUart/src/uart.o
  .debug_macro   0x0000000000000000      0xa72 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .debug_macro   0x0000000000000000       0x22 _programs/TestUart/out/_programs/TestUart/src/uart.o
@@ -479,10 +471,9 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x2a6 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .debug_macro   0x0000000000000000       0x40 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .debug_macro   0x0000000000000000       0x10 _programs/TestUart/out/_programs/TestUart/src/uart.o
- .debug_line    0x0000000000000000      0xd3b _programs/TestUart/out/_programs/TestUart/src/uart.o
- .debug_str     0x0000000000000000    0x23666 _programs/TestUart/out/_programs/TestUart/src/uart.o
+ .debug_line    0x0000000000000000      0xd07 _programs/TestUart/out/_programs/TestUart/src/uart.o
+ .debug_str     0x0000000000000000    0x22bb9 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .comment       0x0000000000000000       0x80 _programs/TestUart/out/_programs/TestUart/src/uart.o
- .debug_frame   0x0000000000000000       0x5c _programs/TestUart/out/_programs/TestUart/src/uart.o
  .ARM.attributes
                 0x0000000000000000       0x39 _programs/TestUart/out/_programs/TestUart/src/uart.o
  .group         0x0000000000000000        0xc _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
@@ -15860,7 +15851,7 @@ END GROUP
  *(.rodata.$Flash2*)
  *(.rodata.$MFlashB512*)
 
-.text           0x000000001a000000     0x3dd4
+.text           0x000000001a000000     0x3d94
  FILL mask 0xff
                 0x000000001a000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -15873,25 +15864,25 @@ END GROUP
                 0x000000001a000114                . = ALIGN (0x4)
                 0x000000001a000114                __section_table_start = .
                 0x000000001a000114                __data_section_table = .
-                0x000000001a000114        0x4 LONG 0x1a003de0 LOADADDR (.data)
+                0x000000001a000114        0x4 LONG 0x1a003da0 LOADADDR (.data)
                 0x000000001a000118        0x4 LONG 0x10000000 ADDR (.data)
                 0x000000001a00011c        0x4 LONG 0x218 SIZEOF (.data)
-                0x000000001a000120        0x4 LONG 0x1a003de0 LOADADDR (.data_RAM2)
+                0x000000001a000120        0x4 LONG 0x1a003da0 LOADADDR (.data_RAM2)
                 0x000000001a000124        0x4 LONG 0x10080000 ADDR (.data_RAM2)
                 0x000000001a000128        0x4 LONG 0x0 SIZEOF (.data_RAM2)
-                0x000000001a00012c        0x4 LONG 0x1a003de0 LOADADDR (.data_RAM3)
+                0x000000001a00012c        0x4 LONG 0x1a003da0 LOADADDR (.data_RAM3)
                 0x000000001a000130        0x4 LONG 0x20000000 ADDR (.data_RAM3)
                 0x000000001a000134        0x4 LONG 0x0 SIZEOF (.data_RAM3)
-                0x000000001a000138        0x4 LONG 0x1a003de0 LOADADDR (.data_RAM4)
+                0x000000001a000138        0x4 LONG 0x1a003da0 LOADADDR (.data_RAM4)
                 0x000000001a00013c        0x4 LONG 0x20008000 ADDR (.data_RAM4)
                 0x000000001a000140        0x4 LONG 0x0 SIZEOF (.data_RAM4)
-                0x000000001a000144        0x4 LONG 0x1a003de0 LOADADDR (.data_RAM5)
+                0x000000001a000144        0x4 LONG 0x1a003da0 LOADADDR (.data_RAM5)
                 0x000000001a000148        0x4 LONG 0x2000c000 ADDR (.data_RAM5)
                 0x000000001a00014c        0x4 LONG 0x0 SIZEOF (.data_RAM5)
                 0x000000001a000150                __data_section_table_end = .
                 0x000000001a000150                __bss_section_table = .
                 0x000000001a000150        0x4 LONG 0x10000218 ADDR (.bss)
-                0x000000001a000154        0x4 LONG 0x3c SIZEOF (.bss)
+                0x000000001a000154        0x4 LONG 0x38 SIZEOF (.bss)
                 0x000000001a000158        0x4 LONG 0x10080000 ADDR (.bss_RAM2)
                 0x000000001a00015c        0x4 LONG 0x0 SIZEOF (.bss_RAM2)
                 0x000000001a000160        0x4 LONG 0x20000000 ADDR (.bss_RAM3)
@@ -15976,540 +15967,540 @@ END GROUP
                 0x000000001a000300                PROVIDE (__CRP_WORD_END__ = .)
                 0x0000000000000001                ASSERT (! ((__CRP_WORD_START__ == __CRP_WORD_END__)), Linker CRP Enabled, but no CRP_WORD provided within application)
  *(.text*)
- .text.main     0x000000001a000300      0x258 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .text.main     0x000000001a000300      0x218 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
                 0x000000001a000300                main
  .text.initialise_monitor_handles
-                0x000000001a000558        0x2 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
-                0x000000001a000558                initialise_monitor_handles
- *fill*         0x000000001a00055a        0x2 ff
+                0x000000001a000518        0x2 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+                0x000000001a000518                initialise_monitor_handles
+ *fill*         0x000000001a00051a        0x2 ff
  .text.Reset_Handler
-                0x000000001a00055c       0x88 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
-                0x000000001a00055c                Reset_Handler
- .text._fini    0x000000001a0005e4        0x2 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
-                0x000000001a0005e4                _fini
- .text._init    0x000000001a0005e6        0x2 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
-                0x000000001a0005e6                _init
+                0x000000001a00051c       0x88 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+                0x000000001a00051c                Reset_Handler
+ .text._fini    0x000000001a0005a4        0x2 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+                0x000000001a0005a4                _fini
+ .text._init    0x000000001a0005a6        0x2 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+                0x000000001a0005a6                _init
  .text._close_r
-                0x000000001a0005e8        0xa _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a0005e8                _close_r
+                0x000000001a0005a8        0xa _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a0005a8                _close_r
  .text._fstat_r
-                0x000000001a0005f2        0xa _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a0005f2                _fstat_r
+                0x000000001a0005b2        0xa _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a0005b2                _fstat_r
  .text._isatty_r
-                0x000000001a0005fc       0x12 _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a0005fc                _isatty_r
+                0x000000001a0005bc       0x12 _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a0005bc                _isatty_r
  .text._lseek_r
-                0x000000001a00060e        0xa _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a00060e                _lseek_r
- .text._read_r  0x000000001a000618       0x4e _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a000618                _read_r
+                0x000000001a0005ce        0xa _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a0005ce                _lseek_r
+ .text._read_r  0x000000001a0005d8       0x4e _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a0005d8                _read_r
  .text._write_r
-                0x000000001a000666       0x28 _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a000666                _write_r
- *fill*         0x000000001a00068e        0x2 ff
- .text._sbrk_r  0x000000001a000690       0x20 _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a000690                _sbrk_r
+                0x000000001a000626       0x28 _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a000626                _write_r
+ *fill*         0x000000001a00064e        0x2 ff
+ .text._sbrk_r  0x000000001a000650       0x20 _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a000650                _sbrk_r
  .text.Board_LED_Init
-                0x000000001a0006b0       0x44 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a000670       0x44 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_TEC_Init
-                0x000000001a0006f4       0x40 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a0006b4       0x40 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_GPIO_Init
-                0x000000001a000734       0x40 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a0006f4       0x40 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_ADC_Init
-                0x000000001a000774       0x30 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a000734       0x30 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_SPI_Init
-                0x000000001a0007a4       0x38 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a000764       0x38 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_I2C_Init
-                0x000000001a0007dc       0x24 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a00079c       0x24 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_Debug_Init
-                0x000000001a000800       0x24 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a000800                Board_Debug_Init
+                0x000000001a0007c0       0x24 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a0007c0                Board_Debug_Init
  .text.Board_UARTPutChar
-                0x000000001a000824       0x14 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a000824                Board_UARTPutChar
+                0x000000001a0007e4       0x14 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a0007e4                Board_UARTPutChar
  .text.Board_UARTGetChar
-                0x000000001a000838       0x1c _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a000838                Board_UARTGetChar
+                0x000000001a0007f8       0x1c _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a0007f8                Board_UARTGetChar
  .text.Board_Init
-                0x000000001a000854       0x30 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a000854                Board_Init
+                0x000000001a000814       0x30 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a000814                Board_Init
  .text.__stdio_putchar
-                0x000000001a000884        0xa _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a000884                __stdio_putchar
+                0x000000001a000844        0xa _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a000844                __stdio_putchar
  .text.__stdio_getchar
-                0x000000001a00088e        0x8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a00088e                __stdio_getchar
+                0x000000001a00084e        0x8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a00084e                __stdio_getchar
  .text.__stdio_init
-                0x000000001a000896        0x8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a000896                __stdio_init
- *fill*         0x000000001a00089e        0x2 ff
+                0x000000001a000856        0x8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a000856                __stdio_init
+ *fill*         0x000000001a00085e        0x2 ff
  .text.Board_SetupMuxing
-                0x000000001a0008a0       0x38 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
-                0x000000001a0008a0                Board_SetupMuxing
+                0x000000001a000860       0x38 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x000000001a000860                Board_SetupMuxing
  .text.Board_SetupClocking
-                0x000000001a0008d8       0x6c _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
-                0x000000001a0008d8                Board_SetupClocking
+                0x000000001a000898       0x6c _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x000000001a000898                Board_SetupClocking
  .text.Board_SystemInit
-                0x000000001a000944        0xc _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
-                0x000000001a000944                Board_SystemInit
+                0x000000001a000904        0xc _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x000000001a000904                Board_SystemInit
  .text.Chip_I2C_EventHandler
-                0x000000001a000950       0x20 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
-                0x000000001a000950                Chip_I2C_EventHandler
+                0x000000001a000910       0x20 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+                0x000000001a000910                Chip_I2C_EventHandler
  .text.Chip_I2C_Init
-                0x000000001a000970       0x24 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
-                0x000000001a000970                Chip_I2C_Init
+                0x000000001a000930       0x24 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+                0x000000001a000930                Chip_I2C_Init
  .text.Chip_I2C_SetClockRate
-                0x000000001a000994       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
-                0x000000001a000994                Chip_I2C_SetClockRate
+                0x000000001a000954       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+                0x000000001a000954                Chip_I2C_SetClockRate
  .text.Chip_UART_GetIndex
-                0x000000001a0009cc       0x2c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x000000001a00098c       0x2c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
  .text.Chip_UART_Init
-                0x000000001a0009f8       0x54 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
-                0x000000001a0009f8                Chip_UART_Init
+                0x000000001a0009b8       0x54 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x000000001a0009b8                Chip_UART_Init
  .text.Chip_UART_SetBaud
-                0x000000001a000a4c       0x40 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
-                0x000000001a000a4c                Chip_UART_SetBaud
+                0x000000001a000a0c       0x40 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x000000001a000a0c                Chip_UART_SetBaud
  .text.Chip_UART_SetBaudFDR
-                0x000000001a000a8c       0xe8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
-                0x000000001a000a8c                Chip_UART_SetBaudFDR
+                0x000000001a000a4c       0xe8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x000000001a000a4c                Chip_UART_SetBaudFDR
  .text.Chip_ADC_GetClockIndex
-                0x000000001a000b74       0x14 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x000000001a000b34       0x14 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
  .text.getClkDiv
-                0x000000001a000b88       0x32 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- *fill*         0x000000001a000bba        0x2 ff
+                0x000000001a000b48       0x32 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ *fill*         0x000000001a000b7a        0x2 ff
  .text.Chip_ADC_Init
-                0x000000001a000bbc       0x40 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
-                0x000000001a000bbc                Chip_ADC_Init
+                0x000000001a000b7c       0x40 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x000000001a000b7c                Chip_ADC_Init
  .text.Chip_ADC_SetSampleRate
-                0x000000001a000bfc       0x32 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
-                0x000000001a000bfc                Chip_ADC_SetSampleRate
+                0x000000001a000bbc       0x32 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x000000001a000bbc                Chip_ADC_SetSampleRate
  .text.Chip_ADC_SetResolution
-                0x000000001a000c2e        0xc _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
-                0x000000001a000c2e                Chip_ADC_SetResolution
- *fill*         0x000000001a000c3a        0x2 ff
+                0x000000001a000bee        0xc _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x000000001a000bee                Chip_ADC_SetResolution
+ *fill*         0x000000001a000bfa        0x2 ff
  .text.pll_calc_divs
-                0x000000001a000c3c       0xa4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000bfc       0xa4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .text.pll_get_frac
-                0x000000001a000ce0      0x10c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000ca0      0x10c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .text.Chip_Clock_FindBaseClock
-                0x000000001a000dec       0x4c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000dac       0x4c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .text.Chip_Clock_EnableCrystal
-                0x000000001a000e38       0x4c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a000e38                Chip_Clock_EnableCrystal
+                0x000000001a000df8       0x4c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000df8                Chip_Clock_EnableCrystal
  .text.Chip_Clock_GetDividerSource
-                0x000000001a000e84       0x1c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a000e84                Chip_Clock_GetDividerSource
+                0x000000001a000e44       0x1c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000e44                Chip_Clock_GetDividerSource
  .text.Chip_Clock_GetDividerDivisor
-                0x000000001a000ea0       0x1c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a000ea0                Chip_Clock_GetDividerDivisor
+                0x000000001a000e60       0x1c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000e60                Chip_Clock_GetDividerDivisor
  .text.Chip_Clock_GetClockInputHz
-                0x000000001a000ebc       0xb8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a000ebc                Chip_Clock_GetClockInputHz
+                0x000000001a000e7c       0xb8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000e7c                Chip_Clock_GetClockInputHz
  .text.Chip_Clock_CalcMainPLLValue
-                0x000000001a000f74       0x80 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a000f74                Chip_Clock_CalcMainPLLValue
+                0x000000001a000f34       0x80 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000f34                Chip_Clock_CalcMainPLLValue
  .text.Chip_Clock_GetMainPLLHz
-                0x000000001a000ff4       0x6c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a000ff4                Chip_Clock_GetMainPLLHz
+                0x000000001a000fb4       0x6c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a000fb4                Chip_Clock_GetMainPLLHz
  .text.Chip_Clock_GetDivRate
-                0x000000001a001060       0x22 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- *fill*         0x000000001a001082        0x2 ff
+                0x000000001a001020       0x22 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ *fill*         0x000000001a001042        0x2 ff
  .text.Chip_Clock_SetBaseClock
-                0x000000001a001084       0x58 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a001084                Chip_Clock_SetBaseClock
+                0x000000001a001044       0x58 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a001044                Chip_Clock_SetBaseClock
  .text.Chip_Clock_GetBaseClock
-                0x000000001a0010dc       0x26 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a0010dc                Chip_Clock_GetBaseClock
+                0x000000001a00109c       0x26 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a00109c                Chip_Clock_GetBaseClock
  .text.Chip_Clock_GetBaseClocktHz
-                0x000000001a001102        0xc _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a001102                Chip_Clock_GetBaseClocktHz
- *fill*         0x000000001a00110e        0x2 ff
+                0x000000001a0010c2        0xc _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a0010c2                Chip_Clock_GetBaseClocktHz
+ *fill*         0x000000001a0010ce        0x2 ff
  .text.Chip_Clock_EnableOpts
-                0x000000001a001110       0x3c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a001110                Chip_Clock_EnableOpts
+                0x000000001a0010d0       0x3c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a0010d0                Chip_Clock_EnableOpts
  .text.Chip_Clock_Enable
-                0x000000001a00114c       0x34 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a00114c                Chip_Clock_Enable
+                0x000000001a00110c       0x34 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a00110c                Chip_Clock_Enable
  .text.Chip_Clock_GetRate
-                0x000000001a001180       0x4c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x000000001a001180                Chip_Clock_GetRate
+                0x000000001a001140       0x4c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a001140                Chip_Clock_GetRate
  .text.SystemCoreClockUpdate
-                0x000000001a0011cc       0x14 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
-                0x000000001a0011cc                SystemCoreClockUpdate
+                0x000000001a00118c       0x14 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+                0x000000001a00118c                SystemCoreClockUpdate
  .text.Chip_SetupCoreClock
-                0x000000001a0011e0      0x154 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
-                0x000000001a0011e0                Chip_SetupCoreClock
+                0x000000001a0011a0      0x154 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+                0x000000001a0011a0                Chip_SetupCoreClock
  .text.Chip_GPIO_Init
-                0x000000001a001334        0x2 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
-                0x000000001a001334                Chip_GPIO_Init
- *fill*         0x000000001a001336        0x2 ff
+                0x000000001a0012f4        0x2 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+                0x000000001a0012f4                Chip_GPIO_Init
+ *fill*         0x000000001a0012f6        0x2 ff
  .text.Chip_SSP_GetClockIndex
-                0x000000001a001338       0x14 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x000000001a0012f8       0x14 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.Chip_SSP_GetPeriphClockIndex
-                0x000000001a00134c       0x18 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x000000001a00130c       0x18 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.Chip_SSP_SetClockRate
-                0x000000001a001364       0x12 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
-                0x000000001a001364                Chip_SSP_SetClockRate
+                0x000000001a001324       0x12 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x000000001a001324                Chip_SSP_SetClockRate
  .text.Chip_SSP_SetBitRate
-                0x000000001a001376       0x3e _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
-                0x000000001a001376                Chip_SSP_SetBitRate
+                0x000000001a001336       0x3e _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x000000001a001336                Chip_SSP_SetBitRate
  .text.Chip_SSP_Init
-                0x000000001a0013b4       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
-                0x000000001a0013b4                Chip_SSP_Init
+                0x000000001a001374       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x000000001a001374                Chip_SSP_Init
  .text.SystemInit
-                0x000000001a0013ec       0x38 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
-                0x000000001a0013ec                SystemInit
+                0x000000001a0013ac       0x38 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+                0x000000001a0013ac                SystemInit
  .text.cyclesCounterInit
-                0x000000001a001424       0x1c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
-                0x000000001a001424                cyclesCounterInit
+                0x000000001a0013e4       0x1c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+                0x000000001a0013e4                cyclesCounterInit
  .text.uartRxReady
-                0x000000001a001440       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001440                uartRxReady
+                0x000000001a001400       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a001400                uartRxReady
  .text.uartTxReady
-                0x000000001a001458       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001458                uartTxReady
+                0x000000001a001418       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a001418                uartTxReady
  .text.uartRxRead
-                0x000000001a001470       0x14 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001470                uartRxRead
+                0x000000001a001430       0x14 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a001430                uartRxRead
  .text.uartTxWrite
-                0x000000001a001484       0x14 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001484                uartTxWrite
+                0x000000001a001444       0x14 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a001444                uartTxWrite
  .text.uartInit
-                0x000000001a001498       0x7c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001498                uartInit
+                0x000000001a001458       0x7c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a001458                uartInit
  .text.uartReadByte
-                0x000000001a001514       0x1e _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001514                uartReadByte
- *fill*         0x000000001a001532        0x2 ff
+                0x000000001a0014d4       0x1e _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a0014d4                uartReadByte
+ *fill*         0x000000001a0014f2        0x2 ff
  .text.receiveBytesUntilReceiveStringOrTimeout
-                0x000000001a001534       0xc8 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001534                receiveBytesUntilReceiveStringOrTimeout
+                0x000000001a0014f4       0xc8 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a0014f4                receiveBytesUntilReceiveStringOrTimeout
  .text.receiveBytesUntilReceiveStringOrTimeoutBlocking
-                0x000000001a0015fc       0x40 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a0015fc                receiveBytesUntilReceiveStringOrTimeoutBlocking
+                0x000000001a0015bc       0x40 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a0015bc                receiveBytesUntilReceiveStringOrTimeoutBlocking
  .text.uartWriteByte
-                0x000000001a00163c       0x1a _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a00163c                uartWriteByte
+                0x000000001a0015fc       0x1a _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a0015fc                uartWriteByte
  .text.uartWriteString
-                0x000000001a001656       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                0x000000001a001656                uartWriteString
- *fill*         0x000000001a00166e        0x2 ff
+                0x000000001a001616       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a001616                uartWriteString
+ *fill*         0x000000001a00162e        0x2 ff
  .text.tickRead
-                0x000000001a001670        0xc _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x000000001a001670                tickRead
+                0x000000001a001630        0xc _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x000000001a001630                tickRead
  .text.tickPowerSet
-                0x000000001a00167c       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x000000001a00167c                tickPowerSet
+                0x000000001a00163c       0x18 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x000000001a00163c                tickPowerSet
  .text.tickInit
-                0x000000001a001694       0x7c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x000000001a001694                tickInit
+                0x000000001a001654       0x7c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x000000001a001654                tickInit
  .text.SysTick_Handler
-                0x000000001a001710       0x34 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x000000001a001710                SysTick_Handler
+                0x000000001a0016d0       0x34 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x000000001a0016d0                SysTick_Handler
  .text.gpioObtainPinInit
-                0x000000001a001744       0x34 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x000000001a001704       0x34 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
  .text.gpioInit
-                0x000000001a001778      0x194 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x000000001a001778                gpioInit
+                0x000000001a001738      0x194 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x000000001a001738                gpioInit
  .text.gpioWrite
-                0x000000001a00190c       0x56 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x000000001a00190c                gpioWrite
+                0x000000001a0018cc       0x56 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x000000001a0018cc                gpioWrite
  .text.gpioRead
-                0x000000001a001962       0x54 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x000000001a001962                gpioRead
+                0x000000001a001922       0x54 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x000000001a001922                gpioRead
  .text.gpioToggle
-                0x000000001a0019b6       0x16 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x000000001a0019b6                gpioToggle
+                0x000000001a001976       0x16 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x000000001a001976                gpioToggle
  .text.USB0_IRQHandler
-                0x000000001a0019cc       0x1c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
-                0x000000001a0019cc                USB0_IRQHandler
+                0x000000001a00198c       0x1c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+                0x000000001a00198c                USB0_IRQHandler
  .text.boardInit
-                0x000000001a0019e8       0x74 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
-                0x000000001a0019e8                boardInit
- .text.delay    0x000000001a001a5c       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
-                0x000000001a001a5c                delay
+                0x000000001a0019a8       0x74 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+                0x000000001a0019a8                boardInit
+ .text.delay    0x000000001a001a1c       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+                0x000000001a001a1c                delay
  .text.delayInit
-                0x000000001a001a94       0x20 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
-                0x000000001a001a94                delayInit
+                0x000000001a001a54       0x20 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+                0x000000001a001a54                delayInit
  .text.delayRead
-                0x000000001a001ab4       0x42 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
-                0x000000001a001ab4                delayRead
- *fill*         0x000000001a001af6        0x2 ff
- .text          0x000000001a001af8       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
-                0x000000001a001af8                __aeabi_uldivmod
- .text          0x000000001a001b28      0x2cc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
-                0x000000001a001b28                __udivmoddi4
- .text          0x000000001a001df4        0x4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_dvmd_tls.o)
-                0x000000001a001df4                __aeabi_ldiv0
-                0x000000001a001df4                __aeabi_idiv0
+                0x000000001a001a74       0x42 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+                0x000000001a001a74                delayRead
+ *fill*         0x000000001a001ab6        0x2 ff
+ .text          0x000000001a001ab8       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
+                0x000000001a001ab8                __aeabi_uldivmod
+ .text          0x000000001a001ae8      0x2cc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+                0x000000001a001ae8                __udivmoddi4
+ .text          0x000000001a001db4        0x4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_dvmd_tls.o)
+                0x000000001a001db4                __aeabi_ldiv0
+                0x000000001a001db4                __aeabi_idiv0
  .text.__libc_init_array
-                0x000000001a001df8       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
-                0x000000001a001df8                __libc_init_array
- .text.memcpy   0x000000001a001e40       0x16 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
-                0x000000001a001e40                memcpy
- .text.memset   0x000000001a001e56       0x10 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
-                0x000000001a001e56                memset
- *fill*         0x000000001a001e66        0x2 ff
- .text.printf   0x000000001a001e68       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
-                0x000000001a001e68                printf
-                0x000000001a001e68                iprintf
- .text._puts_r  0x000000001a001e98       0xb8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
-                0x000000001a001e98                _puts_r
- .text.puts     0x000000001a001f50       0x10 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
-                0x000000001a001f50                puts
- .text.scanf    0x000000001a001f60       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-scanf.o)
-                0x000000001a001f60                iscanf
-                0x000000001a001f60                scanf
+                0x000000001a001db8       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+                0x000000001a001db8                __libc_init_array
+ .text.memcpy   0x000000001a001e00       0x16 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+                0x000000001a001e00                memcpy
+ .text.memset   0x000000001a001e16       0x10 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+                0x000000001a001e16                memset
+ *fill*         0x000000001a001e26        0x2 ff
+ .text.printf   0x000000001a001e28       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
+                0x000000001a001e28                printf
+                0x000000001a001e28                iprintf
+ .text._puts_r  0x000000001a001e58       0xb8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
+                0x000000001a001e58                _puts_r
+ .text.puts     0x000000001a001f10       0x10 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
+                0x000000001a001f10                puts
+ .text.scanf    0x000000001a001f20       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-scanf.o)
+                0x000000001a001f20                iscanf
+                0x000000001a001f20                scanf
  .text.__swbuf_r
-                0x000000001a001f90       0xa4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
-                0x000000001a001f90                __swbuf_r
+                0x000000001a001f50       0xa4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
+                0x000000001a001f50                __swbuf_r
  .text.__swsetup_r
-                0x000000001a002034       0xdc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
-                0x000000001a002034                __swsetup_r
+                0x000000001a001ff4       0xdc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
+                0x000000001a001ff4                __swsetup_r
  .text.__sflush_r
-                0x000000001a002110      0x10c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
-                0x000000001a002110                __sflush_r
+                0x000000001a0020d0      0x10c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+                0x000000001a0020d0                __sflush_r
  .text._fflush_r
-                0x000000001a00221c       0x54 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
-                0x000000001a00221c                _fflush_r
- .text.fflush   0x000000001a002270       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
-                0x000000001a002270                fflush
- .text.std      0x000000001a002294       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a0021dc       0x54 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+                0x000000001a0021dc                _fflush_r
+ .text.fflush   0x000000001a002230       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+                0x000000001a002230                fflush
+ .text.std      0x000000001a002254       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
  .text._cleanup_r
-                0x000000001a0022dc        0xc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x000000001a0022dc                _cleanup_r
+                0x000000001a00229c        0xc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a00229c                _cleanup_r
  .text.__sfmoreglue
-                0x000000001a0022e8       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x000000001a0022e8                __sfmoreglue
- .text.__sinit  0x000000001a002314       0x60 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x000000001a002314                __sinit
- .text.__sfp    0x000000001a002374       0x78 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x000000001a002374                __sfp
- .text._fwalk   0x000000001a0023ec       0x38 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
-                0x000000001a0023ec                _fwalk
+                0x000000001a0022a8       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a0022a8                __sfmoreglue
+ .text.__sinit  0x000000001a0022d4       0x60 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a0022d4                __sinit
+ .text.__sfp    0x000000001a002334       0x78 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a002334                __sfp
+ .text._fwalk   0x000000001a0023ac       0x38 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
+                0x000000001a0023ac                _fwalk
  .text._fwalk_reent
-                0x000000001a002424       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
-                0x000000001a002424                _fwalk_reent
+                0x000000001a0023e4       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
+                0x000000001a0023e4                _fwalk_reent
  .text.__swhatbuf_r
-                0x000000001a002460       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
-                0x000000001a002460                __swhatbuf_r
+                0x000000001a002420       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+                0x000000001a002420                __swhatbuf_r
  .text.__smakebuf_r
-                0x000000001a0024a8       0x80 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
-                0x000000001a0024a8                __smakebuf_r
- .text._free_r  0x000000001a002528       0x9c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
-                0x000000001a002528                _free_r
+                0x000000001a002468       0x80 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+                0x000000001a002468                __smakebuf_r
+ .text._free_r  0x000000001a0024e8       0x9c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
+                0x000000001a0024e8                _free_r
  .text._malloc_r
-                0x000000001a0025c4       0xb4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
-                0x000000001a0025c4                _malloc_r
+                0x000000001a002584       0xb4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+                0x000000001a002584                _malloc_r
  .text.__sfputc_r
-                0x000000001a002678       0x2e /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000001a002638       0x2e /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x000000001a0026a6       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x000000001a0026a6                __sfputs_r
- *fill*         0x000000001a0026ca        0x2 ff
+                0x000000001a002666       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000001a002666                __sfputs_r
+ *fill*         0x000000001a00268a        0x2 ff
  .text._vfprintf_r
-                0x000000001a0026cc      0x22c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x000000001a0026cc                _vfiprintf_r
-                0x000000001a0026cc                _vfprintf_r
+                0x000000001a00268c      0x22c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000001a00268c                _vfiprintf_r
+                0x000000001a00268c                _vfprintf_r
  .text._printf_common
-                0x000000001a0028f8       0xea /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x000000001a0028f8                _printf_common
- *fill*         0x000000001a0029e2        0x2 ff
+                0x000000001a0028b8       0xea /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000001a0028b8                _printf_common
+ *fill*         0x000000001a0029a2        0x2 ff
  .text._printf_i
-                0x000000001a0029e4      0x224 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x000000001a0029e4                _printf_i
+                0x000000001a0029a4      0x224 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000001a0029a4                _printf_i
  .text.__svfscanf_r
-                0x000000001a002c08      0x2a0 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
-                0x000000001a002c08                __svfiscanf_r
-                0x000000001a002c08                __svfscanf_r
+                0x000000001a002bc8      0x2a0 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
+                0x000000001a002bc8                __svfiscanf_r
+                0x000000001a002bc8                __svfscanf_r
  .text._vfscanf_r
-                0x000000001a002ea8       0x50 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
-                0x000000001a002ea8                _vfiscanf_r
-                0x000000001a002ea8                _vfscanf_r
+                0x000000001a002e68       0x50 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
+                0x000000001a002e68                _vfiscanf_r
+                0x000000001a002e68                _vfscanf_r
  .text._scanf_chars
-                0x000000001a002ef8       0xc6 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
-                0x000000001a002ef8                _scanf_chars
- *fill*         0x000000001a002fbe        0x2 ff
+                0x000000001a002eb8       0xc6 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000001a002eb8                _scanf_chars
+ *fill*         0x000000001a002f7e        0x2 ff
  .text._scanf_i
-                0x000000001a002fc0      0x1e8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
-                0x000000001a002fc0                _scanf_i
- .text.lflush   0x000000001a0031a8       0x12 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-refill.o)
- *fill*         0x000000001a0031ba        0x2 ff
+                0x000000001a002f80      0x1e8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000001a002f80                _scanf_i
+ .text.lflush   0x000000001a003168       0x12 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-refill.o)
+ *fill*         0x000000001a00317a        0x2 ff
  .text.__srefill_r
-                0x000000001a0031bc      0x118 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-refill.o)
-                0x000000001a0031bc                __srefill_r
- .text.__sccl   0x000000001a0032d4       0x64 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sccl.o)
-                0x000000001a0032d4                __sccl
- .text.__sread  0x000000001a003338       0x22 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x000000001a003338                __sread
+                0x000000001a00317c      0x118 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-refill.o)
+                0x000000001a00317c                __srefill_r
+ .text.__sccl   0x000000001a003294       0x64 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sccl.o)
+                0x000000001a003294                __sccl
+ .text.__sread  0x000000001a0032f8       0x22 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x000000001a0032f8                __sread
  .text.__swrite
-                0x000000001a00335a       0x38 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x000000001a00335a                __swrite
- .text.__sseek  0x000000001a003392       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x000000001a003392                __sseek
+                0x000000001a00331a       0x38 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x000000001a00331a                __swrite
+ .text.__sseek  0x000000001a003352       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x000000001a003352                __sseek
  .text.__sclose
-                0x000000001a0033b6        0x8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x000000001a0033b6                __sclose
+                0x000000001a003376        0x8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x000000001a003376                __sclose
  .text._strtol_l.isra.0
-                0x000000001a0033be       0xf6 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
+                0x000000001a00337e       0xf6 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
  .text._strtol_r
-                0x000000001a0034b4       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
-                0x000000001a0034b4                _strtol_r
+                0x000000001a003474       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
+                0x000000001a003474                _strtol_r
  .text._strtoul_l.isra.0
-                0x000000001a0034d8       0xf4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtoul.o)
+                0x000000001a003498       0xf4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtoul.o)
  .text._strtoul_r
-                0x000000001a0035cc       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtoul.o)
-                0x000000001a0035cc                _strtoul_r
+                0x000000001a00358c       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtoul.o)
+                0x000000001a00358c                _strtoul_r
  .text.__submore
-                0x000000001a0035f0       0x74 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ungetc.o)
-                0x000000001a0035f0                __submore
+                0x000000001a0035b0       0x74 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ungetc.o)
+                0x000000001a0035b0                __submore
  .text._ungetc_r
-                0x000000001a003664       0xe4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ungetc.o)
-                0x000000001a003664                _ungetc_r
+                0x000000001a003624       0xe4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ungetc.o)
+                0x000000001a003624                _ungetc_r
  .text.__locale_ctype_ptr_l
-                0x000000001a003748        0x6 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
-                0x000000001a003748                __locale_ctype_ptr_l
- *fill*         0x000000001a00374e        0x2 ff
+                0x000000001a003708        0x6 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x000000001a003708                __locale_ctype_ptr_l
+ *fill*         0x000000001a00370e        0x2 ff
  .text.__locale_ctype_ptr
-                0x000000001a003750       0x1c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
-                0x000000001a003750                __locale_ctype_ptr
+                0x000000001a003710       0x1c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x000000001a003710                __locale_ctype_ptr
  .text.__ascii_mbtowc
-                0x000000001a00376c       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
-                0x000000001a00376c                __ascii_mbtowc
- .text          0x000000001a003790       0xa0 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memchr.o)
-                0x000000001a003790                memchr
+                0x000000001a00372c       0x24 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
+                0x000000001a00372c                __ascii_mbtowc
+ .text          0x000000001a003750       0xa0 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memchr.o)
+                0x000000001a003750                memchr
  .text.__malloc_lock
-                0x000000001a003830        0x2 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
-                0x000000001a003830                __malloc_lock
+                0x000000001a0037f0        0x2 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x000000001a0037f0                __malloc_lock
  .text.__malloc_unlock
-                0x000000001a003832        0x2 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
-                0x000000001a003832                __malloc_unlock
+                0x000000001a0037f2        0x2 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x000000001a0037f2                __malloc_unlock
  .text._realloc_r
-                0x000000001a003834       0x4c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
-                0x000000001a003834                _realloc_r
+                0x000000001a0037f4       0x4c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
+                0x000000001a0037f4                _realloc_r
  .text.__ascii_wctomb
-                0x000000001a003880       0x1a /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wctomb_r.o)
-                0x000000001a003880                __ascii_wctomb
+                0x000000001a003840       0x1a /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wctomb_r.o)
+                0x000000001a003840                __ascii_wctomb
  .text._malloc_usable_size_r
-                0x000000001a00389a       0x10 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
-                0x000000001a00389a                _malloc_usable_size_r
+                0x000000001a00385a       0x10 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
+                0x000000001a00385a                _malloc_usable_size_r
  *(.rodata .rodata.* .constdata .constdata.*)
- *fill*         0x000000001a0038aa        0x2 ff
+ *fill*         0x000000001a00386a        0x2 ff
  .rodata.main.str1.4
-                0x000000001a0038ac       0xb4 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+                0x000000001a00386c       0xb4 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
  .rodata.ExtRateIn
-                0x000000001a003960        0x4 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a003960                ExtRateIn
+                0x000000001a003920        0x4 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a003920                ExtRateIn
  .rodata.GpioButtons
-                0x000000001a003964        0x8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a003924        0x8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .rodata.GpioLeds
-                0x000000001a00396c        0xc _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a00392c        0xc _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .rodata.GpioPorts
-                0x000000001a003978       0x12 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- *fill*         0x000000001a00398a        0x2 ff
+                0x000000001a003938       0x12 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ *fill*         0x000000001a00394a        0x2 ff
  .rodata.OscRateIn
-                0x000000001a00398c        0x4 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x000000001a00398c                OscRateIn
+                0x000000001a00394c        0x4 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x000000001a00394c                OscRateIn
  .rodata.InitClkStates
-                0x000000001a003990        0x4 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x000000001a003950        0x4 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
  .rodata.pinmuxing
-                0x000000001a003994       0x74 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x000000001a003954       0x74 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
  .rodata.UART_BClock
-                0x000000001a003a08        0x8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x000000001a0039c8        0x8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
  .rodata.UART_PClock
-                0x000000001a003a10        0x8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .rodata        0x000000001a003a18        0x4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a0039d0        0x8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .rodata        0x000000001a0039d8        0x4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .rodata.Chip_Clock_SetDivider.str1.4
-                0x000000001a003a1c        0x8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a0039dc        0x8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
                                           0x6 (size before relaxing)
  .rodata.periph_to_base
-                0x000000001a003a24       0x6c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x000000001a0039e4       0x6c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .rodata.InitClkStates
-                0x000000001a003a90       0x48 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+                0x000000001a003a50       0x48 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
  .rodata.lpcUarts
-                0x000000001a003ad8       0x48 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x000000001a003a98       0x48 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
  .rodata.gpioPinsInit
-                0x000000001a003b20       0xe6 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x000000001a003b20                gpioPinsInit
- *fill*         0x000000001a003c06        0x2 ff
+                0x000000001a003ae0       0xe6 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x000000001a003ae0                gpioPinsInit
+ *fill*         0x000000001a003bc6        0x2 ff
  .rodata.__sf_fake_stderr
-                0x000000001a003c08       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x000000001a003c08                __sf_fake_stderr
+                0x000000001a003bc8       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a003bc8                __sf_fake_stderr
  .rodata.__sf_fake_stdin
-                0x000000001a003c28       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x000000001a003c28                __sf_fake_stdin
+                0x000000001a003be8       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a003be8                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x000000001a003c48       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x000000001a003c48                __sf_fake_stdout
+                0x000000001a003c08       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000001a003c08                __sf_fake_stdout
  .rodata._global_impure_ptr
-                0x000000001a003c68        0x4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
-                0x000000001a003c68                _global_impure_ptr
+                0x000000001a003c28        0x4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
+                0x000000001a003c28                _global_impure_ptr
  .rodata._vfprintf_r.str1.1
-                0x000000001a003c6c       0x11 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000001a003c2c       0x11 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
  .rodata._printf_i.str1.1
-                0x000000001a003c7d       0x22 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000001a003c3d       0x22 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
  .rodata.__svfscanf_r.str1.1
-                0x000000001a003c9f        0x4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
- *fill*         0x000000001a003c9f        0x1 ff
- .rodata        0x000000001a003ca0        0xc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000001a003c5f        0x4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
+ *fill*         0x000000001a003c5f        0x1 ff
+ .rodata        0x000000001a003c60        0xc /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
  .rodata._scanf_i.str1.1
-                0x000000001a003cac       0x12 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000001a003c6c       0x12 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
  .rodata.str1.1
-                0x000000001a003cbe        0x9 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000001a003c7e        0x9 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
  .rodata._setlocale_r.str1.1
-                0x000000001a003cc7        0x8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x000000001a003c87        0x8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
                                           0x9 (size before relaxing)
  .rodata.str1.1
-                0x000000001a003ccf        0x2 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x000000001a003c8f        0x2 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
  .rodata._ctype_
-                0x000000001a003cd1      0x101 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ctype_.o)
-                0x000000001a003cd1                _ctype_
-                0x000000001a003dd4                . = ALIGN (0x4)
- *fill*         0x000000001a003dd2        0x2 ff
+                0x000000001a003c91      0x101 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ctype_.o)
+                0x000000001a003c91                _ctype_
+                0x000000001a003d94                . = ALIGN (0x4)
+ *fill*         0x000000001a003d92        0x2 ff
 
-.glue_7         0x000000001a003dd4        0x0
- .glue_7        0x000000001a003dd4        0x0 linker stubs
+.glue_7         0x000000001a003d94        0x0
+ .glue_7        0x000000001a003d94        0x0 linker stubs
 
-.glue_7t        0x000000001a003dd4        0x0
- .glue_7t       0x000000001a003dd4        0x0 linker stubs
+.glue_7t        0x000000001a003d94        0x0
+ .glue_7t       0x000000001a003d94        0x0 linker stubs
 
-.vfp11_veneer   0x000000001a003dd4        0x0
- .vfp11_veneer  0x000000001a003dd4        0x0 linker stubs
+.vfp11_veneer   0x000000001a003d94        0x0
+ .vfp11_veneer  0x000000001a003d94        0x0 linker stubs
 
-.v4_bx          0x000000001a003dd4        0x0
- .v4_bx         0x000000001a003dd4        0x0 linker stubs
+.v4_bx          0x000000001a003d94        0x0
+ .v4_bx         0x000000001a003d94        0x0 linker stubs
 
-.iplt           0x000000001a003dd4        0x0
- .iplt          0x000000001a003dd4        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
-                0x000000001a003dd4                . = ALIGN (0x4)
+.iplt           0x000000001a003d94        0x0
+ .iplt          0x000000001a003d94        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+                0x000000001a003d94                . = ALIGN (0x4)
 
-.preinit_array  0x000000001a003dd4        0x0
-                0x000000001a003dd4                PROVIDE (__preinit_array_start = .)
+.preinit_array  0x000000001a003d94        0x0
+                0x000000001a003d94                PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x000000001a003dd4                PROVIDE (__preinit_array_end = .)
+                0x000000001a003d94                PROVIDE (__preinit_array_end = .)
 
-.init_array     0x000000001a003dd4        0x4
-                0x000000001a003dd4                PROVIDE (__init_array_start = .)
+.init_array     0x000000001a003d94        0x4
+                0x000000001a003d94                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x000000001a003dd4        0x4 _programs/TestUart/out/libs/sys_newlib//src/system.o
-                0x000000001a003dd8                PROVIDE (__init_array_end = .)
-                0x000000001a003dd8                . = ALIGN (0x4)
+ .init_array    0x000000001a003d94        0x4 _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x000000001a003d98                PROVIDE (__init_array_end = .)
+                0x000000001a003d98                . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x000000001a003dd8                __exidx_start = .
+                0x000000001a003d98                __exidx_start = .
 
-.ARM.exidx      0x000000001a003dd8        0x8
+.ARM.exidx      0x000000001a003d98        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x000000001a003dd8        0x8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
-                0x000000001a003de0                __exidx_end = .
-                0x000000001a003de0                _etext = .
+ .ARM.exidx     0x000000001a003d98        0x8 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+                0x000000001a003da0                __exidx_end = .
+                0x000000001a003da0                _etext = .
 
-.rel.dyn        0x000000001a003de0        0x0
- .rel.iplt      0x000000001a003de0        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+.rel.dyn        0x000000001a003da0        0x0
+ .rel.iplt      0x000000001a003da0        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 
-.data_RAM2      0x0000000010080000        0x0 load address 0x000000001a003de0
+.data_RAM2      0x0000000010080000        0x0 load address 0x000000001a003da0
  FILL mask 0xff
  *(.ramfunc.$RAM2)
  *(.ramfunc.$RamLoc40)
@@ -16517,7 +16508,7 @@ END GROUP
  *(.data.$RamLoc40*)
                 0x0000000010080000                . = ALIGN (0x4)
 
-.data_RAM3      0x0000000020000000        0x0 load address 0x000000001a003de0
+.data_RAM3      0x0000000020000000        0x0 load address 0x000000001a003da0
  FILL mask 0xff
  *(.ramfunc.$RAM3)
  *(.ramfunc.$RamAHB32)
@@ -16525,7 +16516,7 @@ END GROUP
  *(.data.$RamAHB32*)
                 0x0000000020000000                . = ALIGN (0x4)
 
-.data_RAM4      0x0000000020008000        0x0 load address 0x000000001a003de0
+.data_RAM4      0x0000000020008000        0x0 load address 0x000000001a003da0
  FILL mask 0xff
  *(.ramfunc.$RAM4)
  *(.ramfunc.$RamAHB16)
@@ -16533,7 +16524,7 @@ END GROUP
  *(.data.$RamAHB16*)
                 0x0000000020008000                . = ALIGN (0x4)
 
-.data_RAM5      0x000000002000c000        0x0 load address 0x000000001a003de0
+.data_RAM5      0x000000002000c000        0x0 load address 0x000000001a003da0
  FILL mask 0xff
  *(.ramfunc.$RAM5)
  *(.ramfunc.$RamAHB_ETB16)
@@ -16547,7 +16538,7 @@ END GROUP
                 0x0000000010000000                . = ALIGN (0x4)
                 0x0000000010000000                _end_uninit_RESERVED = .
 
-.data           0x0000000010000000      0x218 load address 0x000000001a003de0
+.data           0x0000000010000000      0x218 load address 0x000000001a003da0
  FILL mask 0xff
                 0x0000000010000000                _data = .
  *(vtable)
@@ -16571,7 +16562,7 @@ END GROUP
                 0x0000000010000218                . = ALIGN (0x4)
                 0x0000000010000218                _edata = .
 
-.igot.plt       0x0000000010000218        0x0 load address 0x000000001a003ff8
+.igot.plt       0x0000000010000218        0x0 load address 0x000000001a003fb8
  .igot.plt      0x0000000010000218        0x0 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 
 .bss_RAM2       0x0000000010080000        0x0
@@ -16594,7 +16585,7 @@ END GROUP
  *(.bss.$RamAHB_ETB16*)
                 0x000000002000c000                . = ALIGN (0x4)
 
-.bss            0x0000000010000218       0x3c
+.bss            0x0000000010000218       0x38
                 0x0000000010000218                _bss = .
  *(.bss*)
  .bss.heap_end.5778
@@ -16617,17 +16608,12 @@ END GROUP
                 0x0000000010000244        0x4 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
                 0x0000000010000244                __malloc_sbrk_start
  *(COMMON)
- COMMON         0x0000000010000248        0x4 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
-                0x0000000010000248                flag
-                0x0000000010000249                state
-                0x000000001000024a                dato
-                0x000000001000024b                flagdat
- COMMON         0x000000001000024c        0x4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
-                0x000000001000024c                SystemCoreClock
- COMMON         0x0000000010000250        0x4 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
-                0x0000000010000250                g_pUsbApi
-                0x0000000010000254                . = ALIGN (0x4)
-                0x0000000010000254                _ebss = .
+ COMMON         0x0000000010000248        0x4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+                0x0000000010000248                SystemCoreClock
+ COMMON         0x000000001000024c        0x4 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+                0x000000001000024c                g_pUsbApi
+                0x0000000010000250                . = ALIGN (0x4)
+                0x0000000010000250                _ebss = .
                 [!provide]                        PROVIDE (end = .)
 
 .noinit_RAM2    0x0000000010080000        0x0
@@ -16650,157 +16636,157 @@ END GROUP
  *(.noinit.$RamAHB_ETB16*)
                 0x000000002000c000                . = ALIGN (0x4)
 
-.noinit         0x0000000010000254        0x0
-                0x0000000010000254                _noinit = .
+.noinit         0x0000000010000250        0x0
+                0x0000000010000250                _noinit = .
  *(.noinit*)
-                0x0000000010000254                . = ALIGN (0x4)
-                0x0000000010000254                _end_noinit = .
-                0x0000000010000254                PROVIDE (_pvHeapStart = .)
+                0x0000000010000250                . = ALIGN (0x4)
+                0x0000000010000250                _end_noinit = .
+                0x0000000010000250                PROVIDE (_pvHeapStart = .)
                 0x0000000010008000                PROVIDE (_vStackTop = (__top_RamLoc32 - 0x0))
-                0xffffffff53ff7332                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (Reset_Handler + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
+                0xffffffff53ff7372                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (Reset_Handler + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
 OUTPUT(_programs/TestUart/out/TestUart.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x1a2d3
- .debug_info    0x0000000000000000     0x2a0f _programs/TestUart/out/_programs/TestUart/src/TestUart.o
- .debug_info    0x0000000000002a0f      0x301 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_info    0x0000000000002d10      0xf43 _programs/TestUart/out/libs/sys_newlib//src/system.o
- .debug_info    0x0000000000003c53     0x2144 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_info    0x0000000000005d97     0x14c3 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_info    0x000000000000725a     0x1366 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_info    0x00000000000085c0     0x164f _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_info    0x0000000000009c0f      0xaef _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_info    0x000000000000a6fe     0x18ed _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_info    0x000000000000bfeb      0xc3d _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_info    0x000000000000cc28      0xab0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_info    0x000000000000d6d8      0x219 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_info    0x000000000000d8f1     0x1606 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_info    0x000000000000eef7       0x3f _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
- .debug_info    0x000000000000ef36      0xbbd _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_info    0x000000000000faf3       0x74 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_info    0x000000000000fb67      0xeaf _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_info    0x0000000000010a16     0x2002 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
- .debug_info    0x0000000000012a18     0x14a2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_info    0x0000000000013eba     0x1a35 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_info    0x00000000000158ef     0x330e _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_info    0x0000000000018bfd      0xbc2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
- .debug_info    0x00000000000197bf      0xb14 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+.debug_info     0x0000000000000000    0x19e89
+ .debug_info    0x0000000000000000     0x25c5 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .debug_info    0x00000000000025c5      0x301 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_info    0x00000000000028c6      0xf43 _programs/TestUart/out/libs/sys_newlib//src/system.o
+ .debug_info    0x0000000000003809     0x2144 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_info    0x000000000000594d     0x14c3 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_info    0x0000000000006e10     0x1366 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_info    0x0000000000008176     0x164f _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_info    0x00000000000097c5      0xaef _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_info    0x000000000000a2b4     0x18ed _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_info    0x000000000000bba1      0xc3d _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_info    0x000000000000c7de      0xab0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_info    0x000000000000d28e      0x219 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_info    0x000000000000d4a7     0x1606 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_info    0x000000000000eaad       0x3f _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_info    0x000000000000eaec      0xbbd _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_info    0x000000000000f6a9       0x74 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_info    0x000000000000f71d      0xeaf _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_info    0x00000000000105cc     0x2002 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+ .debug_info    0x00000000000125ce     0x14a2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_info    0x0000000000013a70     0x1a35 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_info    0x00000000000154a5     0x330e _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_info    0x00000000000187b3      0xbc2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_info    0x0000000000019375      0xb14 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
 
-.debug_abbrev   0x0000000000000000     0x3ab4
- .debug_abbrev  0x0000000000000000      0x318 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
- .debug_abbrev  0x0000000000000318      0x10d _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_abbrev  0x0000000000000425      0x2b7 _programs/TestUart/out/libs/sys_newlib//src/system.o
- .debug_abbrev  0x00000000000006dc      0x47e _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_abbrev  0x0000000000000b5a      0x2f8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_abbrev  0x0000000000000e52      0x344 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_abbrev  0x0000000000001196      0x3b7 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_abbrev  0x000000000000154d      0x1f9 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_abbrev  0x0000000000001746      0x379 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_abbrev  0x0000000000001abf      0x1c3 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_abbrev  0x0000000000001c82      0x203 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_abbrev  0x0000000000001e85      0x100 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_abbrev  0x0000000000001f85      0x352 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_abbrev  0x00000000000022d7       0x36 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
- .debug_abbrev  0x000000000000230d      0x221 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_abbrev  0x000000000000252e       0x74 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_abbrev  0x00000000000025a2      0x232 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_abbrev  0x00000000000027d4      0x3e2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
- .debug_abbrev  0x0000000000002bb6      0x368 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_abbrev  0x0000000000002f1e      0x36f _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_abbrev  0x000000000000328d      0x3d9 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_abbrev  0x0000000000003666      0x20d _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
- .debug_abbrev  0x0000000000003873      0x241 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+.debug_abbrev   0x0000000000000000     0x3ab9
+ .debug_abbrev  0x0000000000000000      0x31d _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .debug_abbrev  0x000000000000031d      0x10d _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_abbrev  0x000000000000042a      0x2b7 _programs/TestUart/out/libs/sys_newlib//src/system.o
+ .debug_abbrev  0x00000000000006e1      0x47e _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_abbrev  0x0000000000000b5f      0x2f8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_abbrev  0x0000000000000e57      0x344 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_abbrev  0x000000000000119b      0x3b7 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_abbrev  0x0000000000001552      0x1f9 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_abbrev  0x000000000000174b      0x379 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_abbrev  0x0000000000001ac4      0x1c3 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_abbrev  0x0000000000001c87      0x203 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_abbrev  0x0000000000001e8a      0x100 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_abbrev  0x0000000000001f8a      0x352 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_abbrev  0x00000000000022dc       0x36 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_abbrev  0x0000000000002312      0x221 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_abbrev  0x0000000000002533       0x74 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_abbrev  0x00000000000025a7      0x232 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_abbrev  0x00000000000027d9      0x3e2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+ .debug_abbrev  0x0000000000002bbb      0x368 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_abbrev  0x0000000000002f23      0x36f _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_abbrev  0x0000000000003292      0x3d9 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_abbrev  0x000000000000366b      0x20d _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_abbrev  0x0000000000003878      0x241 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
 
-.debug_loc      0x0000000000000000     0x6c15
- .debug_loc     0x0000000000000000      0x25e _programs/TestUart/out/_programs/TestUart/src/TestUart.o
- .debug_loc     0x000000000000025e      0x206 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_loc     0x0000000000000464      0x586 _programs/TestUart/out/libs/sys_newlib//src/system.o
- .debug_loc     0x00000000000009ea      0x5b0 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_loc     0x0000000000000f9a       0xf5 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_loc     0x000000000000108f      0xc9a _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_loc     0x0000000000001d29      0xd25 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_loc     0x0000000000002a4e      0x67e _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_loc     0x00000000000030cc     0x123c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_loc     0x0000000000004308      0x1b5 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_loc     0x00000000000044bd      0xd56 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_loc     0x0000000000005213       0x13 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_loc     0x0000000000005226       0xed _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_loc     0x0000000000005313      0xaad _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
- .debug_loc     0x0000000000005dc0      0x173 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_loc     0x0000000000005f33      0x7e4 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_loc     0x0000000000006717      0x34f _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_loc     0x0000000000006a66      0x1af _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+.debug_loc      0x0000000000000000     0x6d05
+ .debug_loc     0x0000000000000000      0x34e _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .debug_loc     0x000000000000034e      0x206 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_loc     0x0000000000000554      0x586 _programs/TestUart/out/libs/sys_newlib//src/system.o
+ .debug_loc     0x0000000000000ada      0x5b0 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_loc     0x000000000000108a       0xf5 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_loc     0x000000000000117f      0xc9a _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_loc     0x0000000000001e19      0xd25 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_loc     0x0000000000002b3e      0x67e _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_loc     0x00000000000031bc     0x123c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_loc     0x00000000000043f8      0x1b5 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_loc     0x00000000000045ad      0xd56 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_loc     0x0000000000005303       0x13 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_loc     0x0000000000005316       0xed _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_loc     0x0000000000005403      0xaad _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+ .debug_loc     0x0000000000005eb0      0x173 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_loc     0x0000000000006023      0x7e4 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_loc     0x0000000000006807      0x34f _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_loc     0x0000000000006b56      0x1af _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
 
-.debug_aranges  0x0000000000000000      0x950
+.debug_aranges  0x0000000000000000      0x958
  .debug_aranges
-                0x0000000000000000       0x28 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+                0x0000000000000000       0x30 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
  .debug_aranges
-                0x0000000000000028       0x90 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+                0x0000000000000030       0x90 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
  .debug_aranges
-                0x00000000000000b8       0xe0 _programs/TestUart/out/libs/sys_newlib//src/system.o
+                0x00000000000000c0       0xe0 _programs/TestUart/out/libs/sys_newlib//src/system.o
  .debug_aranges
-                0x0000000000000198       0xc0 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x00000000000001a0       0xc0 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .debug_aranges
-                0x0000000000000258       0x30 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x0000000000000260       0x30 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
  .debug_aranges
-                0x0000000000000288       0xd8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+                0x0000000000000290       0xd8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
  .debug_aranges
-                0x0000000000000360       0xa8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x0000000000000368       0xa8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
  .debug_aranges
-                0x0000000000000408       0x90 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x0000000000000410       0x90 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
  .debug_aranges
-                0x0000000000000498      0x128 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x00000000000004a0      0x128 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .debug_aranges
-                0x00000000000005c0       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+                0x00000000000005c8       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
  .debug_aranges
-                0x00000000000005f8       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+                0x0000000000000600       0x38 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
  .debug_aranges
-                0x0000000000000630       0x28 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+                0x0000000000000638       0x28 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
  .debug_aranges
-                0x0000000000000658       0xa0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x0000000000000660       0xa0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .debug_aranges
-                0x00000000000006f8       0x18 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
+                0x0000000000000700       0x18 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
  .debug_aranges
-                0x0000000000000710       0x20 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+                0x0000000000000718       0x20 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
  .debug_aranges
-                0x0000000000000730       0x20 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+                0x0000000000000738       0x20 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
  .debug_aranges
-                0x0000000000000750       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+                0x0000000000000758       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
  .debug_aranges
-                0x0000000000000788       0x88 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+                0x0000000000000790       0x88 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
  .debug_aranges
-                0x0000000000000810       0x48 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x0000000000000818       0x48 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
  .debug_aranges
-                0x0000000000000858       0x40 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x0000000000000860       0x40 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
  .debug_aranges
-                0x0000000000000898       0x50 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+                0x00000000000008a0       0x50 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
  .debug_aranges
-                0x00000000000008e8       0x20 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+                0x00000000000008f0       0x20 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
  .debug_aranges
-                0x0000000000000908       0x48 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+                0x0000000000000910       0x48 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
 
-.debug_ranges   0x0000000000000000      0x940
- .debug_ranges  0x0000000000000000       0x48 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
- .debug_ranges  0x0000000000000048       0x80 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_ranges  0x00000000000000c8       0xd0 _programs/TestUart/out/libs/sys_newlib//src/system.o
- .debug_ranges  0x0000000000000198       0xf8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_ranges  0x0000000000000290       0x50 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_ranges  0x00000000000002e0       0xc8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_ranges  0x00000000000003a8       0xb0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_ranges  0x0000000000000458       0x80 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_ranges  0x00000000000004d8      0x190 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_ranges  0x0000000000000668       0x28 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_ranges  0x0000000000000690       0x28 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_ranges  0x00000000000006b8       0x18 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_ranges  0x00000000000006d0       0xc0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_ranges  0x0000000000000790       0x10 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_ranges  0x00000000000007a0       0x10 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_ranges  0x00000000000007b0       0x28 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_ranges  0x00000000000007d8       0x78 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
- .debug_ranges  0x0000000000000850       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_ranges  0x0000000000000888       0x30 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_ranges  0x00000000000008b8       0x40 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_ranges  0x00000000000008f8       0x10 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
- .debug_ranges  0x0000000000000908       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+.debug_ranges   0x0000000000000000      0x930
+ .debug_ranges  0x0000000000000000       0x38 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .debug_ranges  0x0000000000000038       0x80 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_ranges  0x00000000000000b8       0xd0 _programs/TestUart/out/libs/sys_newlib//src/system.o
+ .debug_ranges  0x0000000000000188       0xf8 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_ranges  0x0000000000000280       0x50 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_ranges  0x00000000000002d0       0xc8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_ranges  0x0000000000000398       0xb0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_ranges  0x0000000000000448       0x80 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_ranges  0x00000000000004c8      0x190 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_ranges  0x0000000000000658       0x28 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_ranges  0x0000000000000680       0x28 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_ranges  0x00000000000006a8       0x18 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_ranges  0x00000000000006c0       0xc0 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_ranges  0x0000000000000780       0x10 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_ranges  0x0000000000000790       0x10 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_ranges  0x00000000000007a0       0x28 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_ranges  0x00000000000007c8       0x78 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+ .debug_ranges  0x0000000000000840       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_ranges  0x0000000000000878       0x30 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_ranges  0x00000000000008a8       0x40 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_ranges  0x00000000000008e8       0x10 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_ranges  0x00000000000008f8       0x38 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
 
 .debug_macro    0x0000000000000000     0xc08f
  .debug_macro   0x0000000000000000      0x6f5 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
@@ -16956,77 +16942,77 @@ OUTPUT(_programs/TestUart/out/TestUart.elf elf32-littlearm)
  .debug_macro   0x000000000000b7ae      0x47d _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
  .debug_macro   0x000000000000bc2b      0x464 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
 
-.debug_line     0x0000000000000000     0xbe93
- .debug_line    0x0000000000000000      0xe47 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
- .debug_line    0x0000000000000e47       0xfa _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_line    0x0000000000000f41      0x4b2 _programs/TestUart/out/libs/sys_newlib//src/system.o
- .debug_line    0x00000000000013f3      0xa78 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_line    0x0000000000001e6b      0x87a _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_line    0x00000000000026e5      0x9ee _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_line    0x00000000000030d3      0x9e9 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_line    0x0000000000003abc      0x830 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_line    0x00000000000042ec      0xb41 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_line    0x0000000000004e2d      0x74b _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_line    0x0000000000005578      0x7a8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_line    0x0000000000005d20      0x709 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_line    0x0000000000006429      0xb93 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_line    0x0000000000006fbc       0x44 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
- .debug_line    0x0000000000007000      0x817 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_line    0x0000000000007817       0x61 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_line    0x0000000000007878      0x8f2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_line    0x000000000000816a      0xb74 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
- .debug_line    0x0000000000008cde      0x9a1 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_line    0x000000000000967f      0x9c9 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_line    0x000000000000a048      0xb6c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_line    0x000000000000abb4      0x92e _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
- .debug_line    0x000000000000b4e2      0x9b1 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+.debug_line     0x0000000000000000     0xbec0
+ .debug_line    0x0000000000000000      0xe74 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .debug_line    0x0000000000000e74       0xfa _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_line    0x0000000000000f6e      0x4b2 _programs/TestUart/out/libs/sys_newlib//src/system.o
+ .debug_line    0x0000000000001420      0xa78 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_line    0x0000000000001e98      0x87a _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_line    0x0000000000002712      0x9ee _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_line    0x0000000000003100      0x9e9 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_line    0x0000000000003ae9      0x830 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_line    0x0000000000004319      0xb41 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_line    0x0000000000004e5a      0x74b _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_line    0x00000000000055a5      0x7a8 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_line    0x0000000000005d4d      0x709 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_line    0x0000000000006456      0xb93 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_line    0x0000000000006fe9       0x44 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_line    0x000000000000702d      0x817 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_line    0x0000000000007844       0x61 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_line    0x00000000000078a5      0x8f2 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_line    0x0000000000008197      0xb74 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+ .debug_line    0x0000000000008d0b      0x9a1 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_line    0x00000000000096ac      0x9c9 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_line    0x000000000000a075      0xb6c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_line    0x000000000000abe1      0x92e _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_line    0x000000000000b50f      0x9b1 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
 
-.debug_str      0x0000000000000000    0x2769b
- .debug_str     0x0000000000000000    0x2355c _programs/TestUart/out/_programs/TestUart/src/TestUart.o
-                                      0x23967 (size before relaxing)
- .debug_str     0x000000000002355c      0x212 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+.debug_str      0x0000000000000000    0x27691
+ .debug_str     0x0000000000000000    0x22b32 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+                                      0x22f49 (size before relaxing)
+ .debug_str     0x0000000000022b32      0x212 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
                                        0x2f4c (size before relaxing)
- .debug_str     0x000000000002376e      0x894 _programs/TestUart/out/libs/sys_newlib//src/system.o
+ .debug_str     0x0000000000022d44      0x894 _programs/TestUart/out/libs/sys_newlib//src/system.o
                                        0x6baf (size before relaxing)
- .debug_str     0x0000000000024002      0x9f3 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_str     0x00000000000235d8     0x1407 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
                                       0x1b624 (size before relaxing)
- .debug_str     0x00000000000249f5      0x352 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_str     0x00000000000249df      0x352 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
                                       0x1af9f (size before relaxing)
- .debug_str     0x0000000000024d47      0x5cb _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_str     0x0000000000024d31      0x5cb _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
                                       0x177c7 (size before relaxing)
- .debug_str     0x0000000000025312      0x39a _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_str     0x00000000000252fc      0x39a _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
                                       0x17695 (size before relaxing)
- .debug_str     0x00000000000256ac      0x14a _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_str     0x0000000000025696      0x14a _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
                                       0x17030 (size before relaxing)
- .debug_str     0x00000000000257f6      0x5bf _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_str     0x00000000000257e0      0x5bf _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
                                       0x17a58 (size before relaxing)
- .debug_str     0x0000000000025db5       0x76 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_str     0x0000000000025d9f       0x76 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
                                       0x17585 (size before relaxing)
- .debug_str     0x0000000000025e2b       0xbc _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_str     0x0000000000025e15       0xbc _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
                                       0x174e6 (size before relaxing)
- .debug_str     0x0000000000025ee7       0x42 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_str     0x0000000000025ed1       0x42 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
                                       0x167e7 (size before relaxing)
- .debug_str     0x0000000000025f29      0x3e1 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_str     0x0000000000025f13      0x3e1 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
                                       0x17226 (size before relaxing)
- .debug_str     0x000000000002630a       0x43 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_str     0x00000000000262f4       0x43 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/crp.o
                                        0x2d4c (size before relaxing)
- .debug_str     0x000000000002634d       0xb9 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_str     0x0000000000026337       0xb9 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
                                       0x1a271 (size before relaxing)
- .debug_str     0x0000000000026406       0x56 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_str     0x00000000000263f0       0x56 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
                                        0x2da7 (size before relaxing)
- .debug_str     0x000000000002645c       0xcd _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_str     0x0000000000026446       0xcd _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
                                       0x1af93 (size before relaxing)
- .debug_str     0x0000000000026529      0x665 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+ .debug_str     0x0000000000026513      0x671 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                       0x1b9a1 (size before relaxing)
- .debug_str     0x0000000000026b8e      0x17d _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_str     0x0000000000026b84      0x17d _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
                                       0x1b444 (size before relaxing)
- .debug_str     0x0000000000026d0b      0x17c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_str     0x0000000000026d01      0x17c _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
                                       0x1b29e (size before relaxing)
- .debug_str     0x0000000000026e87      0x756 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_str     0x0000000000026e7d      0x756 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
                                       0x210f2 (size before relaxing)
- .debug_str     0x00000000000275dd       0x2d _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_str     0x00000000000275d3       0x2d _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
                                       0x1a7c0 (size before relaxing)
- .debug_str     0x000000000002760a       0x91 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+ .debug_str     0x0000000000027600       0x91 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
                                       0x1a61d (size before relaxing)
 
 .comment        0x0000000000000000       0x7f
@@ -17176,61 +17162,61 @@ OUTPUT(_programs/TestUart/out/TestUart.elf elf32-littlearm)
  .ARM.attributes
                 0x0000000000000c03       0x34 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
 
-.debug_frame    0x0000000000000000     0x2138
- .debug_frame   0x0000000000000000       0x60 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
- .debug_frame   0x0000000000000060      0x114 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_frame   0x0000000000000174      0x1d8 _programs/TestUart/out/libs/sys_newlib//src/system.o
- .debug_frame   0x000000000000034c      0x204 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_frame   0x0000000000000550       0x5c _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_frame   0x00000000000005ac      0x270 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_frame   0x000000000000081c      0x1f4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_frame   0x0000000000000a10      0x160 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_frame   0x0000000000000b70      0x318 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_frame   0x0000000000000e88       0x70 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_frame   0x0000000000000ef8       0x7c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_frame   0x0000000000000f74       0x30 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_frame   0x0000000000000fa4      0x198 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_frame   0x000000000000113c       0x28 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_frame   0x0000000000001164       0x20 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_frame   0x0000000000001184       0x74 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_frame   0x00000000000011f8      0x190 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
- .debug_frame   0x0000000000001388       0x84 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_frame   0x000000000000140c       0xa4 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_frame   0x00000000000014b0       0xb8 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_frame   0x0000000000001568       0x28 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
- .debug_frame   0x0000000000001590       0xc8 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
- .debug_frame   0x0000000000001658       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x0000000000001684       0x34 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
- .debug_frame   0x00000000000016b8       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
- .debug_frame   0x00000000000016e4       0x28 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x000000000000170c       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
- .debug_frame   0x000000000000172c       0x74 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
- .debug_frame   0x00000000000017a0       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
- .debug_frame   0x00000000000017dc       0x74 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-scanf.o)
- .debug_frame   0x0000000000001850       0x40 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
- .debug_frame   0x0000000000001890       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
- .debug_frame   0x00000000000018bc       0x68 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
- .debug_frame   0x0000000000001924      0x11c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
- .debug_frame   0x0000000000001a40       0x54 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
- .debug_frame   0x0000000000001a94       0x58 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
- .debug_frame   0x0000000000001aec       0x38 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x0000000000001b24       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x0000000000001b50       0xac /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
- .debug_frame   0x0000000000001bfc       0x60 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
- .debug_frame   0x0000000000001c5c       0xac /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
- .debug_frame   0x0000000000001d08       0x60 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
- .debug_frame   0x0000000000001d68       0x40 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-refill.o)
- .debug_frame   0x0000000000001da8       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sccl.o)
- .debug_frame   0x0000000000001dd4       0x88 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
- .debug_frame   0x0000000000001e5c       0x84 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
- .debug_frame   0x0000000000001ee0       0x84 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtoul.o)
- .debug_frame   0x0000000000001f64       0x5c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ungetc.o)
- .debug_frame   0x0000000000001fc0       0x68 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
- .debug_frame   0x0000000000002028       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
- .debug_frame   0x0000000000002070       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
- .debug_frame   0x00000000000020a0       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
- .debug_frame   0x00000000000020dc       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wctomb_r.o)
- .debug_frame   0x0000000000002118       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
+.debug_frame    0x0000000000000000     0x2160
+ .debug_frame   0x0000000000000000       0x88 _programs/TestUart/out/_programs/TestUart/src/TestUart.o
+ .debug_frame   0x0000000000000088      0x114 _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_frame   0x000000000000019c      0x1d8 _programs/TestUart/out/libs/sys_newlib//src/system.o
+ .debug_frame   0x0000000000000374      0x204 _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_frame   0x0000000000000578       0x5c _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_frame   0x00000000000005d4      0x270 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_frame   0x0000000000000844      0x1f4 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_frame   0x0000000000000a38      0x160 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_frame   0x0000000000000b98      0x318 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_frame   0x0000000000000eb0       0x70 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_frame   0x0000000000000f20       0x7c _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_frame   0x0000000000000f9c       0x30 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_frame   0x0000000000000fcc      0x198 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_frame   0x0000000000001164       0x28 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_frame   0x000000000000118c       0x20 _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_frame   0x00000000000011ac       0x74 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_frame   0x0000000000001220      0x190 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
+ .debug_frame   0x00000000000013b0       0x84 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_frame   0x0000000000001434       0xa4 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_frame   0x00000000000014d8       0xb8 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_frame   0x0000000000001590       0x28 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_frame   0x00000000000015b8       0xc8 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
+ .debug_frame   0x0000000000001680       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00000000000016ac       0x34 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00000000000016e0       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+ .debug_frame   0x000000000000170c       0x28 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x0000000000001734       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x0000000000001754       0x74 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
+ .debug_frame   0x00000000000017c8       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
+ .debug_frame   0x0000000000001804       0x74 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-scanf.o)
+ .debug_frame   0x0000000000001878       0x40 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
+ .debug_frame   0x00000000000018b8       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
+ .debug_frame   0x00000000000018e4       0x68 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+ .debug_frame   0x000000000000194c      0x11c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+ .debug_frame   0x0000000000001a68       0x54 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
+ .debug_frame   0x0000000000001abc       0x58 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+ .debug_frame   0x0000000000001b14       0x38 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x0000000000001b4c       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000000000001b78       0xac /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+ .debug_frame   0x0000000000001c24       0x60 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x0000000000001c84       0xac /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf.o)
+ .debug_frame   0x0000000000001d30       0x60 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfscanf_i.o)
+ .debug_frame   0x0000000000001d90       0x40 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-refill.o)
+ .debug_frame   0x0000000000001dd0       0x2c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sccl.o)
+ .debug_frame   0x0000000000001dfc       0x88 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+ .debug_frame   0x0000000000001e84       0x84 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
+ .debug_frame   0x0000000000001f08       0x84 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtoul.o)
+ .debug_frame   0x0000000000001f8c       0x5c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ungetc.o)
+ .debug_frame   0x0000000000001fe8       0x68 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+ .debug_frame   0x0000000000002050       0x48 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
+ .debug_frame   0x0000000000002098       0x30 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x00000000000020c8       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
+ .debug_frame   0x0000000000002104       0x3c /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wctomb_r.o)
+ .debug_frame   0x0000000000002140       0x20 /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
 
 Cross Reference Table
 
@@ -17642,7 +17628,6 @@ DebugMon_Handler                                  _programs/TestUart/out/libs/cm
 EP0_patch                                         _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
 ETH_IRQHandler                                    _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
 EVRT_IRQHandler                                   _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
-EnviarDatoUart                                    _programs/TestUart/out/_programs/TestUart/src/uart.o
 ExtRateIn                                         _programs/TestUart/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
                                                   _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
 FLASH_EEPROM_IRQHandler                           _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
@@ -17707,7 +17692,6 @@ PendSV_Handler                                    _programs/TestUart/out/libs/cm
 QEI_IRQHandler                                    _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
 RIT_IRQHandler                                    _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
 RTC_IRQHandler                                    _programs/TestUart/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
-RecivirDatoUart                                   _programs/TestUart/out/_programs/TestUart/src/uart.o
 Reset_Handler                                     _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
 RingBuffer_Init                                   _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ring_buffer.o
 RingBuffer_Insert                                 _programs/TestUart/out/libs/lpc_open/lpc_chip_43xx/src/ring_buffer.o
@@ -18148,6 +18132,7 @@ circularBufferFullBufferCallbackSet               _programs/TestUart/out/libs/sa
 circularBufferRead                                _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_circularBuffer.o
 circularBufferWrite                               _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_circularBuffer.o
 circularBuffer_Init                               _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_circularBuffer.o
+clearbuffer                                       _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 cyclesCounterInit                                 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
 cyclesCounterToMs                                 _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
@@ -18156,8 +18141,6 @@ cyclesCounterToUs                                 _programs/TestUart/out/libs/sa
 dacInit                                           _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_dac.o
 dacWrite                                          _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_dac.o
 data_init                                         _programs/TestUart/out/libs/cmsis_core//src/armv7m_startup.o
-dato                                              _programs/TestUart/out/_programs/TestUart/src/uart.o
-                                                  _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 delay                                             _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_delay.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/external_peripherals/src/sapi_imu_mpu9250.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/external_peripherals/src/sapi_lcd.o
@@ -18221,9 +18204,6 @@ fflush                                            /home/ezequiel/CIAA/gcc-arm-no
                                                   /home/ezequiel/CIAA/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-refill.o)
 find_IntfDesc                                     _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/cdc_uart.o
-flag                                              _programs/TestUart/out/_programs/TestUart/src/TestUart.o
-flagdat                                           _programs/TestUart/out/_programs/TestUart/src/uart.o
-                                                  _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 floatToString                                     _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_convert.o
 g_pUsbApi                                         _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/cdc_uart.o
@@ -18424,7 +18404,6 @@ sleepUntilNextInterrupt                           _programs/TestUart/out/libs/sa
 spiInit                                           _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
 spiRead                                           _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
 spiWrite                                          _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
-state                                             _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 stdioInit                                         _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_stdio.o
 stdioPrintf                                       _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_stdio.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/external_peripherals/src/sapi_esp8266.o
@@ -18466,25 +18445,20 @@ timer3CompareMatch3func                           _programs/TestUart/out/libs/sa
 uartInit                                          _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/external_peripherals/src/sapi_esp8266.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_print.o
-                                                  _programs/TestUart/out/_programs/TestUart/src/uart.o
                                                   _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 uartInit2                                         _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-uartInit_c                                        _programs/TestUart/out/_programs/TestUart/src/uart.o
 uartReadByte                                      _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/external_peripherals/src/sapi_esp8266.o
-                                                  _programs/TestUart/out/_programs/TestUart/src/uart.o
 uartRxRead                                        _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                                   _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 uartRxReady                                       _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                                   _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 uartTxReady                                       _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
-                                                  _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 uartTxWrite                                       _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                                   _programs/TestUart/out/_programs/TestUart/src/TestUart.o
 uartWriteByte                                     _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_stdio.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_print.o
-                                                  _programs/TestUart/out/_programs/TestUart/src/uart.o
 uartWriteByteArray                                _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
 uartWriteString                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_uart.o
                                                   _programs/TestUart/out/libs/sapi/sapi_v0.5.2/abstract_modules/src/sapi_print.o

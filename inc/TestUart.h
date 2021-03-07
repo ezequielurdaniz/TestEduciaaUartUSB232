@@ -23,7 +23,7 @@ extern "C" {
 
 /*=====[Definition macros of public constants]===============================*/
 typedef enum {
-	standByState,workState,busyState,MeasureState,finishState,errorState
+	Base,Opciones,Conectar,Medir,Procesar,Error
 } state_t;  // Definicion de los estados
 
 /*=====[Public function-like macros]=========================================*/
