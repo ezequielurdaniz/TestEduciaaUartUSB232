@@ -78,23 +78,15 @@ int main( void )
    // ----- Setup -----------------------------------
 	boardInit();
 	state = standByState;			//Inicializo la variable state
-
-	uint8_t data = 0;
-	uint8_t flag = 0;
-	char text[1]; //Menu principal
-	char date[50]; //transferencia de Datos
-	char auxX[1];
-	char auxY[5];
-	char auxZ[5];
-	char auxE[5];
-	int32_t aux = 0;
-	uint8_t cuenta = 0; //Cantidad de datos
-	int32_t list[4];
-	char *ptr;
+	char text[] = "0";
+	char date[50];
+	char auxC[] = "cc.cc";
 
 	//-- configuracion UART
 	uartConfig( UART_USB, 115200 ); // Inicializar UART_USB a 115200 baudios
 	uartConfig( UART_232, 115200 ); // Inicializar UART_232 a 115200 baudios
+
+	//-- Configuracion String
 
 
 
@@ -121,7 +113,7 @@ int main( void )
 				text[0]= '0'; 		//clear text
 
 				printf("ENCENDER SONDA... \r\n");
-				uartTxWrite(UART_232, 'o');
+				uartTxWrite(UART_232, 'r');
 				uartTxWrite(UART_232, '\r');
 				uartTxWrite(UART_232, '\n');
 				state = busyState;
@@ -144,18 +136,20 @@ int main( void )
 			text[0]= '0'; //clear text
 			break;
 
-		case busyState:				// Estado de espera
+		case busyState:				// Espera la respuesta de la sonda ":r" -SONDA ON-
 
 			gpioToggle(LEDB);
 			delay(100);
-			date [0] = 0;							//clear text
+			date [0] = 0;			//clear text
+
+
 			while (uartRxReady(UART_232)) { 		//Hay datos no leidos
 				for (uint8_t i = 0; i < 50; i++){
 					date[i]= uartRxRead(UART_232); //Almaceno Dato
 					}
 				}
 
-			if ((date[0] == ':') && (date[1] == 'o')){  //Repuesta de sonda
+			if ((date[0] == ':') && (date[1] == 'r')){  //Repuesta de sonda
 				printf("ESTADO DE SONDA: ON\r\n");
 				for (uint8_t i = 0; date[i] != '\0'; i++) {
 					uartTxWrite(UART_USB, date[i]);
@@ -182,47 +176,38 @@ int main( void )
 
 			gpioToggle(LED1);
 			delay(100);
-			date [0] = 0; 					//clear text
+			date [0] = 0; 								//clear text
 
+			char patron[] = "N";						//Patron fin del string.
+			uint16_t patronSize = sizeof(patron);
 
-			while (uartRxReady(UART_232)) { 		//Hay datos no leidos
-				for (uint8_t i = 0; i < 50; i++){
+			char buffer[] = ":Dxx.xxyy.yyzz.zzcc.ccN";  //Buffer recepcion de caracteres. 23caracteres + '/0' = longitud 24
+			uint32_t longitud = sizeof(buffer);
 
-					date[i]= uartRxRead(UART_232); //Almaceno Dato
+			char* receiveBuffer = buffer;				// es lo mismo que: *receiveBuffer = &buffer[0]; asigno al puntero (* receiveBuffer) la direccion del primer valor del buffer.
+			uint32_t* receiveBufferSize = &longitud;	//  asigno al puntero (* receiveBufferSize) la direccion del valor longitud.
 
-					uartTxWrite(UART_USB, date[i]);; //Almaceno Dato
-					}
-				}
+			tick_t timeout = 5000;  					//tiempo en miliseg de espera. 5Seg.
 
-			if ((date[0] == ':') && (date[1] == 'D')){  //Repuesta de sonda seguido del valor de medicion
-
-				for(uint8_t i = 19; i < 25; i++) { //:D18  Coordenada C
-					auxX[i-19]= date[i];			 // 18  Coordenada C
-					}
-
-				long int ret = strtol (auxX, &ptr, 10) ;  // De CHAR a INT atoi base 10
-				list[cuenta] = ret;
-				cuenta++;
-				uartTxWrite(UART_USB, ret);
-				state = finishState;
-				}
-
-			if (cuenta == 5){
-				state = standByState;
-				cuenta = 0;
-				aux = 0;
-				for (uint8_t i = 0; i<5; i++){
-					aux = list[i] + aux;
-					}
-
-				itoa( aux, auxX, 10 );			// De INT a CHAR  itoa base 10  (aux y list son int32_t)
-
-				uartTxWrite(UART_USB, auxX[0]);
-				uartTxWrite(UART_USB, auxX[1]);
+			//Recibo y guardo caracteres hasta que llegue el caracter patron o finaliza por tiempo.
+			if (receiveBytesUntilReceiveStringOrTimeoutBlocking(UART_232,patron,patronSize,receiveBuffer,receiveBufferSize,timeout)){
+				gpioToggle(LED3);
+				uartWriteString( UART_USB, buffer );
 				uartTxWrite(UART_USB, '\r');
 				uartTxWrite(UART_USB, '\n');
+				delay(100);
+				// falta verificar que llego :D o E1 .. E7
+				for(uint32_t i=17 ; i<(longitud-1) ; i++ ){
+					auxC[i-17]=buffer[i];
+					uartTxWrite(UART_USB,auxC[i-17]);
+					}
 				}
+			else{
+				// tratar que paso cuando no llega el caracter patron N o se paso te tiempo. Ver los errores E1 E2..
+				// en buffer siempre queda los caracteres recibidos se pueden analizar o descartar.
+			}
 
+			state = MeasureState;
 			break;
 
 		case errorState:
