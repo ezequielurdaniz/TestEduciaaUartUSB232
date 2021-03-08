@@ -9,7 +9,6 @@
 #include "uart.h"
 #include "sapi.h"
 #include "stdlib.h"
-
 #include "stdio.h"
 #include "string.h"
 
@@ -42,8 +41,14 @@ int main( void )
 
 
 	char auxC[] = "cc.cc";						//Variable Campo Compuesto
+	char auxR[] = "cccc";						//Variable Campo Compuesto
+	char error[] = "EE";
 	uint8_t longitudC = sizeof(auxC);
-	uint8_t cantmedicion = 0;					//contador de mediciones correctar recibidas.
+	uint8_t longitudR = sizeof(auxR);
+	uint8_t escala = 4;							// factor de division para cc.cc
+	float listvalor[10];
+	uint8_t contador = 0;					//contador de mediciones correctar recibidas.
+	float factor;
 
 
 	 // ----- Setup -----------------------------------
@@ -153,48 +158,158 @@ int main( void )
 			if (receiveBytesUntilReceiveStringOrTimeoutBlocking(UART_232,patron,patronSize,receiveBuffer,receiveBufferSize,timeout)){
 				gpioToggle(LED1);
 				state = Procesar;
-				break;
 				}
 				else{												//Error por timeout o sin patron final
 					gpioToggle(LED2);
 					state = Error;
-					break;
 					}
-
-			state = Medir;
 			break;
-
-
-
 
 		case Procesar:
 
 			if(buffer[0]== ':' && buffer[1]== 'D'){				//Verificacion de recepcion ":D"
 				gpioToggle(LED3);
-				//cantmedicion++;
-				for(uint32_t i=17 ; i<(longitud-1) ; i++ ){
+				contador++;
+				for(uint32_t i=17 ; i<(longitud-1) ; i++ ){		//Conservo solo los caracteres del tipo "cc.cc" o ".cccc"
 					auxC[i-17]=buffer[i];
 					uartTxWrite(UART_USB,auxC[i-17]);
 					uartTxWrite(UART_USB,'\r');
 					uartTxWrite(UART_USB,'\n');
 					}
+
+				for (uint8_t i = 0;i<longitudC;i++){
+					if(auxC[i] == '.'){							//  i=1 -> /1000 | i=2 -> /100 | i=3 -> /10 |i=4 -> /1
+						escala = i;
+						}
+					}
+				char *ptr;
+				long int ret;
+				switch (escala){
+							case 0:										// .cccc -> i=0 -> /10000
+								for(uint8_t i = 1;i<longitudC;i++){
+									auxR[i-1]=auxC[i];
+									}
+								ret = strtol(auxR, &ptr, 10);
+								factor = 10000.00;
+								listvalor[contador]= ((float)ret)/factor;
+								printf("El valor ingresado caso 0: %ld\r\n", ret);
+								break;
+
+							case 1:										 // c.ccc -> i=1 -> /1000
+								for(uint8_t i = 0;i<escala;i++){
+									auxR[i]=auxC[i];
+									}
+								for(uint8_t i = 2;i<longitudC;i++){
+									auxR[i-1]=auxC[i];
+									}
+								ret = strtol(auxR, &ptr, 10);
+								factor = 1000.00;
+								listvalor[contador]= ((float)ret)/factor;
+								printf("El valor ingresado caso 1: %ld\r\n", ret);
+								break;
+
+							case 2:										 // cc.cc -> i=2 -> /100
+								for(uint8_t i = 0;i<escala;i++){
+									auxR[i]=auxC[i];
+									}
+								for(uint8_t i = 3;i<longitudC;i++){
+									auxR[i-1]=auxC[i];
+									}
+								ret = strtol(auxR, &ptr, 10);
+								factor = 100.00;
+								listvalor[contador]= ((float)ret)/factor;
+
+								printf("El valor ingresado caso 2 long int: %ld\r\n", ret);
+								printf("El valor ingresado caso 2 float: %ld\r\n",listvalor[contador]);
+
+								break;
+
+							case 3:										// ccc.c -> i=3 -> /10
+								for(uint8_t i = 0;i<escala;i++){
+									auxR[i]=auxC[i];
+									}
+								for(uint8_t i = 4;i<longitudC;i++){
+									auxR[i-1]=auxC[i];
+									}
+								ret = strtol(auxR, &ptr, 10);
+								factor = 10.00;
+								listvalor[contador]= ((float)ret)/factor;
+								printf("El valor ingresado caso 3: %ld\r\n", ret);
+								break;
+
+							case 4:										// cccc. i=4 -> /1
+								for(uint8_t i = 0;i<longitudC-1;i++){
+									auxR[i]=auxC[i];
+									}
+								ret = strtol(auxR, &ptr, 10);
+								factor = 1.00;
+								listvalor[contador]= ((float)ret)/factor;
+								printf("El valor ingresado caso 4: %ld\r\n", ret);
+								break;
+							default:
+								break;
+							}
 				state = Medir;
+
+				if(contador == 10){
+					contador =0;
+					for(uint8_t i=0;i<10;i++){
+						printf("El lista de valores: %d\r\n", listvalor[i]);
+						}
+					}
 				}
 				else{											//Error en verificacion de recepcion ":D"
 					state = Error;
-					break;
 					}
-			//state = Base;
+
 			break;
 
 		case Error:
 			gpioToggle(LEDB);
-			delay(100);
-			uartWriteString( UART_USB, buffer );
-			uartTxWrite(UART_USB,'\r');
-			uartTxWrite(UART_USB,'\n');
-			// tratar que paso cuando no llega el caracter patron N o se paso te tiempo. Ver los errores E1 E2..
-			// en buffer siempre queda los caracteres recibidos se pueden analizar o descartar.
+			if(buffer[0]== 'E'){
+			switch(buffer[1]){
+				case '1':
+					printf("ERROR DE COMUNICACION E1\r\n");
+					break;
+				case '2':
+					printf("ERROR DE BUFFER E2\r\n");
+					break;
+				case '3':
+					printf("COMANDO RECIBIDO NO VALIDO E3\r\n");
+					break;
+				case '4':
+					printf("PARAMETRO RECIBIDO NO VALIDO E4\r\n");
+					break;
+				case '5':
+					printf("ERROR DE HARDWARE E5\r\n");
+					break;
+				case '6':
+					printf("ERROR DE PARIDAD E6\r\n");
+					break;
+				case '7':
+					printf("COMANDO RECIBIDO INCORRECTO E7\r\n");
+					break;
+				case '8':
+					printf("COMANDO NO DISPONIBLE E8\r\n");
+					break;
+				case '9':
+					printf("COMANDO RECIBIDO INCORRECTO E9\r\n");
+					break;
+
+				default:
+					printf("TIEMPO OUT..\r\n");
+					uartWriteString( UART_USB, buffer );
+					uartTxWrite(UART_USB,'\r');
+					uartTxWrite(UART_USB,'\n');
+					break;
+				}
+			}
+			else {
+				printf("TIEMPO OUT..\r\n");
+				uartWriteString( UART_USB, buffer );
+				uartTxWrite(UART_USB,'\r');
+				uartTxWrite(UART_USB,'\n');
+				}
 			state = Medir;
 			break;
 
@@ -207,12 +322,6 @@ int main( void )
 
    // YOU NEVER REACH HERE, because this program runs directly or on a
    // microcontroller and is not called by any Operating System, as in the 
-
-  //  if(  uartReadByte( UART_USB, &dato ) ){
-
-       // Se reenvia el dato a la UART_USB realizando un eco de lo que llega
-    //   uartWriteByte( UART_USB, dato );
-    //}
    // case of a PC program.
    return 0;
 }
