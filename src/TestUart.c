@@ -32,6 +32,12 @@ void clearbuffer(char* buffer, uint32_t longitud); // Funcion Clear buffer
 
 int main( void )
 {
+
+	// Recordar en config.mk poner USE_NANO=n (usar newlib completa
+	// en lugar de newlib nano) para tener soporte de flotantes en
+	// printf(), sin embargo, esto causa que el programa ocupe MUCHA
+	// mas RAM y FLASH.
+
 	 // ----- Variables -----------------------------------
 	state_t state = Base;						//Estado inicial de la maquina.
 
@@ -169,12 +175,9 @@ int main( void )
 
 			if(buffer[0]== ':' && buffer[1]== 'D'){				//Verificacion de recepcion ":D"
 				gpioToggle(LED3);
-				contador++;
+
 				for(uint32_t i=17 ; i<(longitud-1) ; i++ ){		//Conservo solo los caracteres del tipo "cc.cc" o ".cccc"
 					auxC[i-17]=buffer[i];
-					uartTxWrite(UART_USB,auxC[i-17]);
-					uartTxWrite(UART_USB,'\r');
-					uartTxWrite(UART_USB,'\n');
 					}
 
 				for (uint8_t i = 0;i<longitudC;i++){
@@ -182,17 +185,19 @@ int main( void )
 						escala = i;
 						}
 					}
+				//-- configuracion de variables para convertir char a int. -------------
 				char *ptr;
 				long int ret;
+
 				switch (escala){
 							case 0:										// .cccc -> i=0 -> /10000
 								for(uint8_t i = 1;i<longitudC;i++){
 									auxR[i-1]=auxC[i];
 									}
-								ret = strtol(auxR, &ptr, 10);
-								factor = 10000.00;
-								listvalor[contador]= ((float)ret)/factor;
-								printf("El valor ingresado caso 0: %ld\r\n", ret);
+								ret = strtol(auxR, &ptr, 10);				// de char a int.
+								listvalor[contador]= ((float)ret)/(float)10000; // int a float ajustado a su escala
+								printf("El valor ingresado caso 0: %.4f\r\n", listvalor[contador]);
+								contador++;
 								break;
 
 							case 1:										 // c.ccc -> i=1 -> /1000
@@ -202,10 +207,10 @@ int main( void )
 								for(uint8_t i = 2;i<longitudC;i++){
 									auxR[i-1]=auxC[i];
 									}
-								ret = strtol(auxR, &ptr, 10);
-								factor = 1000.00;
-								listvalor[contador]= ((float)ret)/factor;
-								printf("El valor ingresado caso 1: %ld\r\n", ret);
+								ret = strtol(auxR, &ptr, 10);  					// de char a int.
+								listvalor[contador]= ((float)ret)/(float)1000;; // int a float ajustado a su escala
+								printf("El valor ingresado caso 1: %.4f\r\n", listvalor[contador]);
+								contador++;
 								break;
 
 							case 2:										 // cc.cc -> i=2 -> /100
@@ -216,12 +221,10 @@ int main( void )
 									auxR[i-1]=auxC[i];
 									}
 								ret = strtol(auxR, &ptr, 10);
-								factor = 100.00;
-								listvalor[contador]= ((float)ret)/factor;
+								listvalor[contador]= (float)ret/(float)100; //
 
-								printf("El valor ingresado caso 2 long int: %ld\r\n", ret);
-								printf("El valor ingresado caso 2 float: %ld\r\n",listvalor[contador]);
-
+								printf("El valor ingresado caso 2 float: %.4f\r\n",listvalor[contador]);
+								contador++;
 								break;
 
 							case 3:										// ccc.c -> i=3 -> /10
@@ -232,9 +235,9 @@ int main( void )
 									auxR[i-1]=auxC[i];
 									}
 								ret = strtol(auxR, &ptr, 10);
-								factor = 10.00;
-								listvalor[contador]= ((float)ret)/factor;
-								printf("El valor ingresado caso 3: %ld\r\n", ret);
+								listvalor[contador]= ((float)ret)/(float)10;
+								printf("El valor ingresado caso 3: %.4f\r\n",listvalor[contador]);
+								contador++;
 								break;
 
 							case 4:										// cccc. i=4 -> /1
@@ -242,25 +245,32 @@ int main( void )
 									auxR[i]=auxC[i];
 									}
 								ret = strtol(auxR, &ptr, 10);
-								factor = 1.00;
-								listvalor[contador]= ((float)ret)/factor;
-								printf("El valor ingresado caso 4: %ld\r\n", ret);
+								listvalor[contador]= ((float)ret)/(float)1;
+								printf("El valor ingresado caso 4: %.4f\r\n", listvalor[contador]);
+								contador++;
 								break;
 							default:
 								break;
 							}
+
 				state = Medir;
 
 				if(contador == 10){
 					contador =0;
-					for(uint8_t i=0;i<10;i++){
-						printf("El lista de valores: %d\r\n", listvalor[i]);
+					float suma = listvalor[0];
+					for(uint8_t i=1;i<10;i++){
+
+						suma = (suma + listvalor[i]);
 						}
+					printf("El lista de valores: %.4f\r\n", suma);
+					printf("El lista de valores: %.4f\r\n", suma/(float)10);
+					state = Base;
 					}
+
+			}
+			else{											//Error en verificacion de recepcion ":D"
+				state = Error;
 				}
-				else{											//Error en verificacion de recepcion ":D"
-					state = Error;
-					}
 
 			break;
 
