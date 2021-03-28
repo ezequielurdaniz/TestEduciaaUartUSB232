@@ -1,6 +1,5 @@
 /*=============================================================================
- * All rights reserved.
- * License: bsd-3-clause (see LICENSE.txt)
+
  *===========================================================================*/
 
 /*=====[Inclusions of function dependencies]=================================*/
@@ -61,9 +60,10 @@ int main( void )
 	boardInit();
 
 
+
 	//-- configuracion UART
 	uartConfig( UART_USB, 115200 ); // Inicializar UART_USB a 115200 baudios
-	uartConfig( UART_232, 115200 ); // Inicializar UART_232 a 115200 baudios
+	uartConfig( UART_232, 115200); // Inicializar UART_232 a 115200 baudios
 
 
 
